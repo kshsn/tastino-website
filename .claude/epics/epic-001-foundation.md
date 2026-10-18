@@ -1,6 +1,6 @@
 # Epic 001 — Foundation
 
-**Status:** Pending
+**Status:** Complete (PR open, awaiting review)
 **Phase:** 7 — Build
 **Release:** MVP · **Effort:** M
 
@@ -27,7 +27,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: the build does not depend on live network calls to Google Fonts (fonts are self-hosted or fetched at build with a local fallback).
 - [ ] Duplicate submission: running the Prisma migrate and seed commands twice leaves the database unchanged the second time.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -45,7 +45,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: fonts are served from the same origin, so a blocked third-party font host does not change typography.
 - [ ] Duplicate submission: not applicable; token file has a single source of truth and no duplicate color definitions (verified by a lint or test check).
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -64,7 +64,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: detection runs only on request headers and cookie, with no external geo-IP call, so it works offline.
 - [ ] Duplicate submission: an unsupported prefix such as `/fr/about` returns a redirect to the detected supported locale, not a 500 or a redirect loop.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -84,7 +84,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Duplicate submission: clicking the switch repeatedly does not stack redirects or create history entries beyond one per switch.
 - [ ] Mixed-direction text: Latin brand names and the phone number `+20 110 011 1887` render in correct order inside Arabic sentences.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -103,7 +103,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: the logo is served locally and renders with no external request.
 - [ ] Duplicate submission: double-tapping the mobile menu button leaves the menu in a consistent open or closed state.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -121,7 +121,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: contact details are rendered server-side from settings and appear without client JavaScript.
 - [ ] Duplicate submission: not applicable to a read-only footer; a link-check test confirms zero broken internal links.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -139,7 +139,7 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: if the lazy animation chunk fails to load, all content is still visible and readable without animation.
 - [ ] Duplicate submission: toggling the OS setting while the page is open updates behavior without a reload and without double-registered listeners.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -157,13 +157,13 @@ Deliver a running, deployable Next.js shell where every page exists in `/en` and
 - [ ] Network failure: the error page has no dependency on the database or API to render.
 - [ ] Duplicate submission: retrying the error page action does not repeat any non-idempotent action.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
 ## Epic Checklist
-- [ ] All stories marked complete
-- [ ] Type check passing (`tsc --noEmit`)
-- [ ] Linter passing (`eslint .`)
+- [x] All stories marked complete
+- [x] Type check passing (`tsc --noEmit`)
+- [x] Linter passing (`eslint .`)
 - [ ] Committed and pushed to GitHub
 - [ ] Project CLAUDE.md updated with last completed epic
