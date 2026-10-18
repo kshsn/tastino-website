@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leads — Tastino admin (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<style>
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.kpi{padding:18px}
+.kpi small{color:var(--muted);font-weight:700;font-size:12px}
+.kpi b{display:block;font-size:28px;margin-top:6px}
+.kpi span{font-size:12px;color:var(--green);font-weight:700}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px;border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;background:#F4F1EC;border-radius:12px;padding:4px}
+.tabs button{border:0;background:none;padding:8px 12px;border-radius:9px;font-weight:700;color:var(--muted);cursor:pointer}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(20,33,61,.08)}
+.tabs em{font-style:normal;opacity:.6;margin-inline-start:4px}
+.search{flex:1;min-width:200px;border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;outline:0}
+table{width:100%;border-collapse:collapse}
+th{text-align:start;font-size:12px;color:var(--muted);font-weight:700;padding:12px 14px;border-bottom:1px solid var(--line);background:#FCFBF8}
+td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.row{cursor:pointer;transition:background .15s}
+tr.row:hover{background:#FBF8F3}
+tr.row.unread td:first-child{box-shadow:inset 3px 0 0 var(--blue)}
+td b{display:block}
+td .sub{color:var(--muted);font-size:12px}
+.flag{font-size:11px;font-weight:800;color:var(--amber);background:#FFF4E0;border-radius:6px;padding:2px 6px;margin-inline-start:6px}
+.av{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-weight:800;font-size:12px}
+.empty{display:none;padding:50px;text-align:center;color:var(--muted)}
+.drawer{position:fixed;top:0;inset-inline-end:0;width:min(520px,100%);height:100vh;background:#fff;box-shadow:-30px 0 60px -30px rgba(20,33,61,.4);transform:translateX(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);z-index:60;display:flex;flex-direction:column}
+[dir=rtl] .drawer{transform:translateX(-105%)}
+.drawer.open{transform:none}
+.shade{position:fixed;inset:0;background:rgba(20,33,61,.3);opacity:0;pointer-events:none;transition:.3s;z-index:55}
+.shade.open{opacity:1;pointer-events:auto}
+.dh{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.dh h2{font-size:20px}
+.db{padding:20px 24px;overflow:auto;flex:1}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:10px 14px;margin-bottom:20px}
+.kv dt{color:var(--muted);font-size:12px;font-weight:700}
+.msg{background:#F8F6F2;border-radius:14px;padding:14px;line-height:1.6;margin-bottom:20px}
+.quick{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.notes{border-top:1px solid var(--line);padding-top:16px}
+.note-i{display:flex;gap:10px;margin-bottom:14px}
+.note-i p{background:#F8F6F2;border-radius:12px;padding:10px 12px;line-height:1.5}
+.note-i small{color:var(--muted);font-size:11px}
+.df{padding:16px 24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+@media (max-width:900px){.kpis{grid-template-columns:1fr 1fr}.hide-m{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="side"></div>
+  <main class="main" id="main">
+    <div class="top">
+      <div><h1>Leads</h1><p>Distributor, catalogue and product requests from the website. Every new lead is also emailed to info@tastinofoods.com.</p></div>
+      <div style="display:flex;gap:8px"><button class="btn" id="exp">⬇ Export CSV</button></div>
+    </div>
+    <div class="kpis">
+      <div class="card kpi"><small>New this week</small><b>4</b><span>+2 vs last week</span></div>
+      <div class="card kpi"><small>In contact</small><b>3</b></div>
+      <div class="card kpi"><small>Qualified</small><b>2</b></div>
+      <div class="card kpi"><small>Top country</small><b style="font-size:20px;margin-top:12px">Saudi Arabia</b></div>
+    </div>
+    <div class="card">
+      <div class="bar">
+        <div class="tabs" id="tabs"></div>
+        <input class="search" id="q" placeholder="Search name, company, email…">
+        <select class="btn" id="country"><option value="">All countries</option></select>
+      </div>
+      <table><thead><tr><th>Contact</th><th class="hide-m">Country</th><th class="hide-m">Request</th><th class="hide-m">Received</th><th>Status</th><th class="hide-m">Owner</th></tr></thead><tbody id="tb"></tbody></table>
+      <div class="empty" id="empty">No leads match these filters.</div>
+    </div>
+  </main>
+</div>
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer"></aside>
+<script src="admin-side.js"></script>
+<script>
+const allowed=mountSide('leads');
+const ST={new:['New','s-new'],contact:['In contact','s-contact'],qual:['Qualified','s-qual'],closed:['Closed','s-closed'],arch:['Archived','s-arch']};
+const OWN={'':['Unassigned','#98A2B3'],mona:['Mona A.','#3FA34D'],karim:['Karim S.','#1E6FD9']};
+const L=[
+ {id:'TF-2026-0142',n:'Ahmed Hassan',c:'Gulf Fresh Distribution',e:'ahmed@gulffresh.sa',p:'+966 55 123 4567',co:'Saudi Arabia',r:'Become a distributor',b:'Lora, TAMA',t:'Today 10:42',s:'new',o:'',u:1,m:'We distribute to 120 supermarkets in Riyadh and Jeddah and are looking for jams and juices.',type:'Distribution company',notes:[]},
+ {id:'TF-2026-0141',n:'Lina Haddad',c:'Haddad Trading',e:'lina@haddadtrading.jo',p:'+962 79 555 0101',co:'Jordan',r:'Request catalogue',b:'Andiamo',t:'Today 08:15',s:'new',o:'',u:1,m:'Please send your sauces catalogue and price list for Amman.',type:'Wholesaler',notes:[]},
+ {id:'TF-2026-0139',n:'Youssef Adel',c:'Cairo Hotels Group',e:'procurement@cairohotels.eg',p:'+20 100 222 3344',co:'Egypt',r:'Product inquiry',b:'Freshness',t:'Yesterday',s:'contact',o:'mona',u:0,m:'Interested in Freshness syrups (vanilla, caramel) for 6 hotel cafés.',type:'Hotel / restaurant / café',notes:[{w:'Mona A.',t:'Yesterday 16:20',x:'Called, sending samples on Sunday.'}]},
+ {id:'TF-2026-0137',n:'Khalid Al Mansoori',c:'Emirates Foodstuff LLC',e:'khalid@efs.ae',p:'+971 50 777 8899',co:'United Arab Emirates',r:'Become a distributor',b:'Liora, Andiamo',t:'14 Oct',s:'qual',o:'karim',u:0,m:'Exclusive distribution for UAE, tomato paste tins 400g and 800g.',type:'Distribution company',notes:[{w:'Karim S.',t:'15 Oct',x:'Meeting held. Volume 2 containers / month.'}]},
+ {id:'TF-2026-0130',n:'Nour Saleh',c:'Saleh Market',e:'nour@salehmarket.kw',p:'',co:'Kuwait',r:'Request catalogue',b:'TAMA',t:'9 Oct',s:'contact',o:'mona',u:0,m:'Catalogue please.',type:'Supermarket chain',notes:[]},
+ {id:'TF-2026-0118',n:'Rami Khoury',c:'Khoury Catering',e:'rami@khourycatering.lb',p:'+961 3 456 789',co:'Lebanon',r:'Product inquiry',b:'Andiamo',t:'2 Oct',s:'closed',o:'karim',u:0,m:'Tahini for catering, 400g.',type:'Catering',notes:[]},
+ {id:'TF-2024-0034',n:'Hany Fathy',c:'Delta Foods',e:'hany@deltafoods.eg',p:'+20 122 000 1111',co:'Egypt',r:'Become a distributor',b:'Liora',t:'12 Sep 2024',s:'arch',o:'mona',u:0,m:'Delta region distribution.',type:'Distribution company',notes:[],old:1},
+];
+let tab='all',sel=null;
+if(!allowed){document.getElementById('main').innerHTML='<div class="top"><h1>Leads</h1></div>'+noAccess()}
+else{
+const cs=document.getElementById('country');[...new Set(L.map(l=>l.co))].sort().forEach(c=>cs.insertAdjacentHTML('beforeend',`<option>${c}</option>`));
+function tabs(){const cnt=k=>k==='all'?L.filter(l=>l.s!=='arch').length:L.filter(l=>l.s===k).length;
+  document.getElementById('tabs').innerHTML=[['all','All'],...Object.entries(ST).map(([k,v])=>[k,v[0]])].map(([k,l])=>`<button class="${k===tab?'on':''}" data-t="${k}">${l}<em>${cnt(k)}</em></button>`).join('')}
+function rows(){const q=document.getElementById('q').value.toLowerCase(),c=cs.value;
+  const list=L.filter(l=>(tab==='all'?l.s!=='arch':l.s===tab)&&(!c||l.co===c)&&(!q||(l.n+l.c+l.e).toLowerCase().includes(q)));
+  document.getElementById('tb').innerHTML=list.map(l=>`<tr class="row ${l.u?'unread':''}" data-id="${l.id}"><td><b>${l.n}${l.old?'<span class="flag">24+ months</span>':''}</b><span class="sub">${l.c}</span></td><td class="hide-m">${l.co}</td><td class="hide-m">${l.r}<div class="sub">${l.b}</div></td><td class="hide-m">${l.t}</td><td><span class="pill ${ST[l.s][1]}">${ST[l.s][0]}</span></td><td class="hide-m"><span class="av" style="background:${OWN[l.o][1]}">${OWN[l.o][0][0]}</span></td></tr>`).join('');
+  document.getElementById('empty').style.display=list.length?'none':'block'}
+function render(){tabs();rows()}
+document.getElementById('tabs').onclick=e=>{const b=e.target.closest('button');if(b){tab=b.dataset.t;render()}};
+document.getElementById('q').oninput=rows;cs.onchange=rows;
+document.getElementById('tb').onclick=e=>{const r=e.target.closest('tr');if(r)open(r.dataset.id)};
+const dr=document.getElementById('drawer'),sh=document.getElementById('shade');
+function close(){dr.classList.remove('open');sh.classList.remove('open')}
+sh.onclick=close;addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+function open(id){const l=L.find(x=>x.id===id);sel=l;l.u=0;rows();
+  dr.innerHTML=`<div class="dh"><div><span class="note">${l.id} · ${l.t}</span><h2>${l.n}</h2><span class="note">${l.c} · ${l.type}</span></div><button class="btn" id="x">✕</button></div>
+  <div class="db">
+    ${l.old?'<div class="msg" style="background:#FFF4E0;color:#8A5300"><b>Older than 24 months.</b> Review under the retention policy. Leads are never deleted automatically.</div>':''}
+    <div class="quick">${l.p?`<a class="btn" style="color:#1A9E50" href="https://wa.me/${l.p.replace(/\D/g,'')}">WhatsApp</a><a class="btn" href="tel:${l.p.replace(/\s/g,'')}">Call</a>`:''}<a class="btn" href="mailto:${l.e}">Email</a></div>
+    <dl class="kv"><dt>Email</dt><dd>${l.e}</dd><dt>Phone</dt><dd dir="ltr">${l.p||'<span class="note">Not provided</span>'}</dd><dt>Country</dt><dd>${l.co}</dd><dt>Request</dt><dd>${l.r}</dd><dt>Brands</dt><dd>${l.b}</dd><dt>Consent</dt><dd>✓ PDPL consent given ${l.t}</dd></dl>
+    <div class="msg">${l.m}</div>
+    <div class="two"><div class="field"><label>Status</label><select id="st">${Object.entries(ST).filter(([k])=>k!=='arch').map(([k,v])=>`<option value="${k}" ${k===l.s?'selected':''}>${v[0]}</option>`).join('')}</select></div>
+    <div class="field"><label>Owner</label><select id="ow">${Object.entries(OWN).map(([k,v])=>`<option value="${k}" ${k===l.o?'selected':''}>${v[0]}</option>`).join('')}</select></div></div>
+    <div class="notes"><label class="note" style="font-weight:700">Internal notes</label><div id="nl" style="margin-top:12px">${notes(l)}</div>
+      <div class="field" style="margin-top:6px"><textarea id="nt" rows="2" placeholder="Add a note for the team…"></textarea></div><button class="btn" id="addn">Add note</button></div>
+  </div>
+  <div class="df"><button class="btn" id="arch">${l.s==='arch'?'Restore':'Archive'}</button><span class="note" style="align-self:center">Leads can't be deleted.</span></div>`;
+  dr.classList.add('open');sh.classList.add('open');
+  document.getElementById('x').onclick=close;
+  document.getElementById('st').onchange=e=>{l.s=e.target.value;render();toast('Status updated · logged in audit log')};
+  document.getElementById('ow').onchange=e=>{l.o=e.target.value;rows();toast('Owner updated')};
+  document.getElementById('addn').onclick=()=>{const v=document.getElementById('nt').value.trim();if(!v)return;l.notes.push({w:ROLES[ROLE].name,t:'Just now',x:v});document.getElementById('nl').innerHTML=notes(l);document.getElementById('nt').value='';toast('Note added')};
+  document.getElementById('arch').onclick=()=>{l.s=l.s==='arch'?'new':'arch';render();close();toast(l.s==='arch'?'Lead archived':'Lead restored')};
+}
+function notes(l){return l.notes.length?l.notes.map(n=>`<div class="note-i"><span class="av" style="background:#3FA34D">${n.w[0]}</span><div><small>${n.w} · ${n.t}</small><p>${n.x}</p></div></div>`).join(''):'<p class="note" style="margin-bottom:12px">No notes yet.</p>'}
+document.getElementById('exp').onclick=()=>toast(`Exported ${L.length} leads to tastino-leads-2026-10-18.csv`);
+render();
+}
+</script>
+</body>
+</html>
