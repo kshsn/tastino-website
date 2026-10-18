@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TAMA — Tastino Foods (Brand page mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.bhero{position:relative;margin-top:22px;border-radius:44px;background:var(--bc);color:#fff;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+.bhero::before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:rgba(255,255,255,.08);inset-inline-end:-120px;top:-160px}
+.bhero .txt{position:relative;padding:64px;align-self:center}
+.bhero .eyebrow{color:rgba(255,255,255,.75)}
+.bhero h1{color:#fff;margin:14px 0 18px}
+.bhero p{opacity:.9;line-height:1.7;max-width:460px}
+.bhero .stats{display:flex;gap:34px;margin-top:34px}
+.bhero .stats b{font-size:40px;display:block;line-height:1}
+.bhero .stats span{font-size:13px;opacity:.8}
+.bhero .cta{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+.bhero .btn-primary{background:#fff;color:var(--bc);box-shadow:none}
+.bhero .btn-ghost{border-color:#fff;color:#fff}
+.stage{position:relative}
+.stage .blob{position:absolute;inset:14% 12%;background:rgba(255,255,255,.16);animation:morph 10s ease-in-out infinite}
+.stage img{position:absolute;bottom:8%;height:74%;width:auto;filter:drop-shadow(0 30px 26px rgba(0,0,0,.28));transition:transform 1.2s cubic-bezier(.2,1.2,.3,1),opacity .8s}
+.stage img.s1{left:50%;transform:translateX(-50%);z-index:2;animation:bob 5s ease-in-out infinite}
+.stage img.s0{left:50%;height:60%;opacity:0;transform:translateX(-50%)}
+.stage img.s2{left:50%;height:60%;opacity:0;transform:translateX(-50%)}
+.stage.in img.s0{opacity:1;transform:translateX(-135%) rotate(-10deg)}
+.stage.in img.s2{opacity:1;transform:translateX(35%) rotate(10deg)}
+.range-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:60px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px}
+.fact small{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fact b{display:block;font-size:22px;margin-top:8px}
+.other{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.other a{border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:700;font-size:14px;background:#fff;transition:.25s}
+.other a:hover{border-color:var(--c);color:var(--c)}
+.band{margin-top:80px;border-radius:40px;background:var(--ink);color:#fff;padding:54px 60px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.band h2{color:#fff;max-width:560px}
+.note{font-size:12px;color:var(--muted);margin-top:14px}
+@media (max-width:960px){
+  .bhero{grid-template-columns:1fr;min-height:0}
+  .bhero .txt{padding:40px 26px 0}
+  .stage{height:380px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .facts{grid-template-columns:1fr}
+  .band{padding:40px 26px}
+}
+</style>
+</head>
+<body data-page="brands">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><a href="index.html" data-ar="الرئيسية">Home</a><span class="sep">/</span><a href="brand.html" data-ar="علاماتنا">Brands</a><span class="sep">/</span><span id="crumb">TAMA</span></div>
+
+  <div class="bhero rv" id="hero">
+    <div class="txt">
+      <div class="eyebrow" id="bcat">Juices &amp; Nectars</div>
+      <h1 id="bname">TAMA</h1>
+      <p id="bdesc"></p>
+      <div class="stats">
+        <div><b id="nProd">0</b><span data-ar="منتج">Products</span></div>
+        <div><b id="nPack">0</b><span data-ar="أنواع العبوات">Pack types</span></div>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#range"><span data-ar="شاهد التشكيلة">See the range</span> <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="distributors.html" data-ar="وزّع هذه العلامة">Distribute this brand</a>
+      </div>
+    </div>
+    <div class="stage" id="stage"><div class="blob"></div></div>
+  </div>
+
+  <section id="range" style="padding-bottom:0">
+    <div class="range-head rv">
+      <div><div class="eyebrow" data-ar="التشكيلة الكاملة">The full range</div><h2 id="rangeH">Every flavour, every size</h2></div>
+      <div class="chips" id="sizeNote"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="note" data-ar="* المنتجات بدون صورة: الصورة قيد التجهيز من تستينو.">* Products without a picture: packshot pending from Tastino.</p>
+
+    <div class="facts">
+      <div class="fact rv"><small data-ar="المصنع">Made by</small><b data-ar="تستينو فودز، العاشر من رمضان">Tastino Foods, 10th of Ramadan</b></div>
+      <div class="fact rv"><small data-ar="العبوات">Packaging</small><b id="packs">Glass</b></div>
+      <div class="fact rv"><small data-ar="القنوات">Channels</small><b data-ar="التجزئة · الجملة · الفنادق والمطاعم · التموين">Retail · Wholesale · HORECA · Catering</b></div>
+    </div>
+
+    <div class="rv" style="margin-top:60px">
+      <div class="eyebrow" data-ar="علامات أخرى">Other Tastino brands</div>
+      <div class="other" id="other"></div>
+    </div>
+
+    <div class="band rv">
+      <h2 id="bandH">Want TAMA on your shelves?</h2>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-wa" href="https://wa.me/201100111887">WhatsApp <span dir="ltr">+20 110 011 1887</span></a>
+        <a class="btn btn-primary" href="distributors.html" style="background:#fff;color:var(--ink)" data-ar="كن موزعاً">Become a Distributor</a>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="ftr"></div>
+<script src="data.js"></script>
+<script>
+const key=new URLSearchParams(location.search).get('b')||'tama';
+const B=BRANDS[key]||BRANDS.tama;
+const items=PRODUCTS.filter(p=>p.brand===key);
+document.documentElement.style.setProperty('--bc',B.c);
+document.documentElement.style.setProperty('--accent',B.c);
+const shots=items.filter(p=>p.img).slice(0,3);
+const st=document.getElementById('stage');
+const order=shots.length===3?[shots[1],shots[0],shots[2]]:shots;
+order.forEach((p,k)=>{const im=document.createElement('img');im.src=IMG+p.img;im.alt='';im.className='s'+(shots.length===1?1:k===0?0:k===1?1:2);st.appendChild(im)});
+if(shots.length===1) st.querySelector('img').className='s1';
+setTimeout(()=>st.classList.add('in'),500);
+window.onLang=[ar=>{
+  const name=ar&&B.nameAr?B.nameAr:B.name;
+  document.title=name+' — Tastino Foods';
+  document.getElementById('crumb').textContent=name;
+  document.getElementById('bname').textContent=name;
+  document.getElementById('bcat').textContent=ar?B.ar:B.en;
+  document.getElementById('bdesc').textContent=ar?`تشكيلة ${name} من ${B.ar}، تُصنع لدى تستينو فودز في مدينة العاشر من رمضان الصناعية بمعايير جودة وسلامة غذاء صارمة.`:`The ${name} range of ${B.en.toLowerCase()}, made by Tastino Foods in 10th of Ramadan Industrial City to strict quality and food-safety standards.`;
+  document.getElementById('bandH').textContent=ar?`هل تريد ${name} على رفوفك؟`:`Want ${name} on your shelves?`;
+  document.getElementById('rangeH').textContent=ar?'كل نكهة، كل حجم':'Every flavour, every size';
+  document.getElementById('nProd').textContent=ar?items.length.toLocaleString('ar-EG'):items.length;
+  const packs=[...new Set(items.map(p=>p.pack))];
+  document.getElementById('nPack').textContent=ar?packs.length.toLocaleString('ar-EG'):packs.length;
+  document.getElementById('packs').textContent=packs.map(k=>PACKS[k][ar?1:0]).join(' · ');
+  document.getElementById('grid').innerHTML=items.map(p=>card(p,ar)).join('');
+  document.getElementById('other').innerHTML=Object.entries(BRANDS).filter(([k])=>k!==key).map(([k,b])=>`<a style="--c:${b.c}" href="brand.html?b=${k}">${ar&&b.nameAr?b.nameAr:b.name}</a>`).join('');
+  window.reveal&&reveal();
+}];
+</script>
+<script src="shared.js"></script>
+</body>
+</html>
