@@ -1,0 +1,26 @@
+# dependencies & build
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+next-env.d.ts
+
+# env & secrets
+.env
+.env.*
+!.env.example
+
+# local planning material (private / bulky)
+.claude/deployment/
+.claude/source/pdf-images/
+.claude/settings.local.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/settings.json
