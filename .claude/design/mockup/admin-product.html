@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit product — Tastino admin (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<style>
+.crumb{color:var(--muted);font-size:13px;margin-bottom:6px}
+.crumb a:hover{color:var(--ink)}
+.layout{display:grid;grid-template-columns:1fr 330px;gap:18px;align-items:start}
+.sec{padding:22px;margin-bottom:18px}
+.sec h3{font-size:15px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.lt{display:flex;gap:4px;background:#F4F1EC;border-radius:12px;padding:4px;width:max-content;margin-bottom:18px}
+.lt button{border:0;background:none;padding:8px 16px;border-radius:9px;font-weight:700;color:var(--muted);cursor:pointer;display:flex;gap:8px;align-items:center}
+.lt button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(20,33,61,.08)}
+.lt .dot{width:8px;height:8px;border-radius:50%;background:var(--red)}
+.lt .dot.ok{background:var(--green)}
+.pane{display:none}.pane.on{display:block}
+.pane[dir=rtl] input,.pane[dir=rtl] textarea{font-family:"Cairo",system-ui,sans-serif}
+.cnt{font-size:11px;color:var(--muted);text-align:end}
+.req{color:var(--red)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+table{width:100%;border-collapse:collapse}
+th{font-size:12px;color:var(--muted);text-align:start;padding:8px;border-bottom:1px solid var(--line)}
+td{padding:8px;border-bottom:1px solid var(--line)}
+td input,td select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:8px}
+.media{display:grid;grid-template-columns:160px 1fr;gap:18px}
+.shot{height:200px;border-radius:16px;background:#FFF3E8;display:grid;place-items:center;position:relative;overflow:hidden}
+.shot img{max-height:88%;width:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.15))}
+.drop{border:2px dashed var(--line);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:20px;color:var(--muted);transition:.2s;cursor:pointer}
+.drop:hover{border-color:var(--blue);background:#F5F9FF}
+.drop b{color:var(--ink)}
+.status{padding:20px}
+.status .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.checks{list-style:none;margin:16px 0}
+.checks li{display:flex;gap:10px;align-items:center;padding:8px 0;font-weight:600;font-size:13px;border-bottom:1px dashed var(--line)}
+.checks li i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;color:#fff;background:var(--red);flex:none;transition:background .3s}
+.checks li.ok i{background:var(--green)}
+.checks li.ok{color:var(--muted)}
+.pub{width:100%;justify-content:center;padding:12px;margin-top:6px}
+.why{font-size:12px;color:var(--red);margin-top:8px;text-align:center;min-height:16px}
+.serp{padding:20px}
+.serp .u{color:#1A7F37;font-size:12px}
+.serp .t{color:#1A0DAB;font-size:17px;margin:4px 0}
+.serp .d{color:#4D5156;font-size:13px;line-height:1.5}
+.switch{display:flex;align-items:center;justify-content:space-between;padding:10px 0;font-weight:600;font-size:13px}
+.switch input{width:38px;height:22px;accent-color:var(--green)}
+@media (max-width:1100px){.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="side"></div>
+  <main class="main" id="main">
+    <div class="crumb"><a href="#">Products</a> / <a href="#">TAMA</a> / Mango Nectar</div>
+    <div class="top">
+      <div style="display:flex;align-items:center;gap:12px"><h1>Mango Nectar</h1><span class="pill s-draft" id="stPill">Draft</span></div>
+      <div style="display:flex;gap:8px"><a class="btn" href="product.html?p=tama-mango" target="_blank">Preview ↗</a><button class="btn" id="save">Save draft</button></div>
+    </div>
+    <div class="layout">
+      <div>
+        <div class="card sec">
+          <h3>Content <span class="note">Both languages are required to publish</span></h3>
+          <div class="lt" id="lt"><button class="on" data-l="en"><span class="dot" id="dEn"></span>English</button><button data-l="ar"><span class="dot" id="dAr"></span>العربية</button></div>
+          <div class="pane on" id="p-en">
+            <div class="field"><label>Product name <span class="req">*</span></label><input id="nEn" value="Mango Nectar"></div>
+            <div class="field"><label>Short description <span class="req">*</span> <span class="note">(cards and SEO, max 160)</span></label><textarea id="sEn" rows="2" maxlength="160">Smooth mango nectar from TAMA, made by Tastino Foods in 10th of Ramadan.</textarea><span class="cnt" id="cEn"></span></div>
+            <div class="field"><label>Ingredients</label><textarea rows="2" placeholder="From Tastino's approved spec sheet"></textarea></div>
+          </div>
+          <div class="pane" id="p-ar" dir="rtl">
+            <div class="field"><label>اسم المنتج <span class="req">*</span></label><input id="nAr" value="نكتار مانجو"></div>
+            <div class="field"><label>وصف مختصر <span class="req">*</span> <span class="note">(حد أقصى 160)</span></label><textarea id="sAr" rows="2" maxlength="160" placeholder="أضف الوصف العربي قبل النشر"></textarea><span class="cnt" id="cAr"></span></div>
+            <div class="field"><label>المكونات</label><textarea rows="2" placeholder="من ورقة المواصفات المعتمدة"></textarea></div>
+          </div>
+        </div>
+
+        <div class="card sec">
+          <h3>Details</h3>
+          <div class="grid3">
+            <div class="field"><label>Brand</label><select><option>TAMA</option><option>Lora</option><option>Liora</option><option>Andiamo</option><option>Tastino lines</option></select></div>
+            <div class="field"><label>Category</label><select><option>Juices</option><option>Jams</option><option>Tomato</option><option>Sauces</option><option>Syrups</option></select></div>
+            <div class="field"><label>URL slug</label><input value="tama-mango" dir="ltr"></div>
+          </div>
+        </div>
+
+        <div class="card sec">
+          <h3>Sizes &amp; packaging <button class="btn" id="addV" style="padding:7px 12px">+ Add size</button></h3>
+          <table><thead><tr><th>Size</th><th>Pack</th><th>Units / carton</th><th>Shown</th><th></th></tr></thead><tbody id="vt"></tbody></table>
+        </div>
+
+        <div class="card sec">
+          <h3>Packshot &amp; files</h3>
+          <div class="media">
+            <div class="shot"><img src="../../source/cutouts/tama-mango-nectar-250ml.png" alt=""></div>
+            <div style="display:grid;gap:12px">
+              <div class="drop"><b>Replace packshot</b>PNG or JPG, white or transparent background, up to 10 MB. The background is removed and WebP/AVIF sizes are generated automatically.</div>
+              <div class="drop"><b>Spec sheet (PDF, optional)</b>Shown as "Download spec sheet" on the product page.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card status">
+          <div class="row"><b>Publishing</b><span class="pill s-draft" id="stPill2">Draft</span></div>
+          <div class="switch"><span>Featured on homepage</span><input type="checkbox" checked></div>
+          <ul class="checks" id="checks"></ul>
+          <button class="btn primary pub" id="pub">Publish</button>
+          <div class="why" id="why"></div>
+          <p class="note" style="margin-top:12px">Last saved 2 min ago by Omar K. · Changes are recorded in the audit log.</p>
+        </div>
+        <div class="card serp" style="margin-top:18px">
+          <div class="note" style="font-weight:700;margin-bottom:10px">Google preview</div>
+          <div class="u">tastinofoods.com › en › products › tama-mango</div>
+          <div class="t" id="sT"></div>
+          <div class="d" id="sD"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="admin-side.js"></script>
+<script>
+const allowed=mountSide('products');
+if(!allowed){document.getElementById('main').innerHTML='<div class="top"><h1>Products</h1></div>'+noAccess()}
+else{
+const $=id=>document.getElementById(id);
+const V=[{s:'200ml',p:'Glass',u:24,on:true},{s:'250ml',p:'Glass',u:24,on:true},{s:'1L',p:'Glass',u:'',on:true}];
+function vt(){$('vt').innerHTML=V.map((v,i)=>`<tr><td><input value="${v.s}" data-i="${i}" data-k="s" dir="ltr"></td><td><select data-i="${i}" data-k="p">${['Glass','PET','Tin'].map(o=>`<option ${o===v.p?'selected':''}>${o}</option>`).join('')}</select></td><td><input value="${v.u}" placeholder="—" data-i="${i}" data-k="u"></td><td><input type="checkbox" ${v.on?'checked':''} data-i="${i}" data-k="on" style="width:auto"></td><td><button class="btn danger" data-del="${i}" style="padding:6px 10px">✕</button></td></tr>`).join('');check()}
+$('vt').oninput=e=>{const t=e.target;if(t.dataset.i===undefined)return;V[t.dataset.i][t.dataset.k]=t.type==='checkbox'?t.checked:t.value;check()};
+$('vt').onclick=e=>{const d=e.target.closest('[data-del]');if(d){V.splice(+d.dataset.del,1);vt()}};
+$('addV').onclick=()=>{V.push({s:'',p:'Glass',u:'',on:true});vt()};
+$('lt').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#lt button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='p-'+b.dataset.l))};
+let published=false;
+function check(){
+  const c=[['English name',$('nEn').value.trim()],['English description',$('sEn').value.trim()],['Arabic name',$('nAr').value.trim()],['Arabic description',$('sAr').value.trim()],['Packshot uploaded',true],['At least one size shown',V.some(v=>v.on&&v.s.trim())]];
+  $('checks').innerHTML=c.map(([l,ok])=>`<li class="${ok?'ok':''}"><i>${ok?'✓':'!'}</i>${l}</li>`).join('');
+  const missing=c.filter(x=>!x[1]).map(x=>x[0]);
+  $('pub').disabled=!!missing.length&&!published;
+  $('why').textContent=missing.length?`Can't publish yet: ${missing.join(', ').toLowerCase()} missing.`:'';
+  $('dEn').classList.toggle('ok',!!($('nEn').value.trim()&&$('sEn').value.trim()));
+  $('dAr').classList.toggle('ok',!!($('nAr').value.trim()&&$('sAr').value.trim()));
+  $('cEn').textContent=$('sEn').value.length+'/160';$('cAr').textContent=$('sAr').value.length+'/160';
+  $('sT').textContent=($('nEn').value||'Untitled')+' — TAMA | Tastino Foods';$('sD').textContent=$('sEn').value||'Add a short description.';
+  $('save').disabled=published&&!!missing.length;
+  if(published&&missing.length)$('why').textContent=`This product is live. Restore ${missing.join(', ').toLowerCase()} before saving.`;
+}
+function setSt(){['stPill','stPill2'].forEach(id=>{$(id).className='pill '+(published?'s-pub':'s-draft');$(id).textContent=published?'Published':'Draft'});$('pub').textContent=published?'Unpublish':'Publish'}
+document.querySelectorAll('#nEn,#sEn,#nAr,#sAr').forEach(el=>el.oninput=check);
+$('pub').onclick=()=>{published=!published;setSt();check();toast(published?'Published · live on /en and /ar':'Moved back to draft')};
+$('save').onclick=()=>toast('Draft saved');
+vt();
+}
+</script>
+</body>
+</html>
