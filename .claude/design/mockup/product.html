@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — Tastino Foods (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.pd{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start;padding:30px 0 20px}
+.stage{position:sticky;top:110px;aspect-ratio:1/1;border-radius:40px;background:color-mix(in srgb,var(--c) 10%,#fff);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.stage .blob{position:absolute;inset:16%;background:var(--c);opacity:.9;animation:morph 9s ease-in-out infinite}
+.stage .ring{position:absolute;inset:6%;border:2px dashed color-mix(in srgb,var(--c) 30%,transparent);border-radius:50%;animation:spin 50s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stage img{position:relative;height:78%;width:auto;filter:drop-shadow(0 34px 28px rgba(0,0,0,.25));animation:bob 5s ease-in-out infinite}
+.stage .none{position:relative;color:#fff;text-align:center;font-weight:800}
+.stage .none b{font-size:90px;display:block;line-height:1}
+.badge{position:absolute;bottom:22px;inset-inline-start:22px;background:#fff;border-radius:16px;padding:10px 14px;font-size:12px;font-weight:700;box-shadow:0 14px 30px -16px rgba(20,33,61,.4);animation:float 6s ease-in-out infinite}
+.info .tag{display:inline-block;background:var(--c);color:#fff;font-weight:800;font-size:13px;padding:6px 12px;border-radius:999px}
+.info h1{margin:14px 0 10px;font-size:clamp(34px,4.4vw,56px)}
+.info .lead{color:var(--muted);line-height:1.75;font-size:17px}
+.sizes{margin:28px 0}
+.sizes h5,.spec h5{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+[dir=rtl] .sizes h5,[dir=rtl] .spec h5{letter-spacing:0}
+.sizes .chip-f.on{background:var(--c);border-color:var(--c)}
+.acts{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0 34px}
+.acts .btn-primary{background:var(--c);box-shadow:0 10px 24px -10px var(--c)}
+.spec{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px}
+.spec table{width:100%;border-collapse:collapse;font-size:15px}
+.spec td{padding:13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.spec tr:last-child td{border:0}
+.spec td:first-child{color:var(--muted);width:42%}
+.pending{color:var(--muted);font-style:italic}
+.ingr{margin-top:18px;background:color-mix(in srgb,var(--c) 7%,#fff);border-radius:20px;padding:20px;line-height:1.7;font-size:15px}
+.rel{margin-top:70px}
+.rel .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+@media (max-width:960px){
+  .pd{grid-template-columns:1fr;gap:30px}
+  .stage{position:relative;top:0}
+  .rel .grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body data-page="products">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs" id="crumbs"></div>
+  <div class="pd">
+    <div class="stage rv" id="stage"><div class="ring"></div><div class="blob"></div></div>
+    <div class="info">
+      <a class="tag rv" id="btag" href="#"></a>
+      <h1 class="rv" id="pname"></h1>
+      <p class="lead rv" id="plead"></p>
+      <div class="sizes rv"><h5 data-ar="الأحجام المتاحة">Available sizes</h5><div class="chips" id="sizes"></div></div>
+      <div class="acts rv">
+        <a class="btn btn-primary" id="quote" href="distributors.html"><span data-ar="اطلب عرض سعر">Request a quote</span> <span class="arr">→</span></a>
+        <a class="btn btn-wa" id="wa" href="#">WhatsApp</a>
+        <a class="btn btn-ghost" id="spec" href="distributors.html" data-ar="اطلب ورقة المواصفات">Request spec sheet</a>
+      </div>
+      <div class="spec rv">
+        <h5 data-ar="المواصفات">Specifications</h5>
+        <table id="specT"></table>
+        <div class="ingr" id="ingr"></div>
+      </div>
+    </div>
+  </div>
+  <div class="rel">
+    <div class="eyebrow rv" id="relE"></div>
+    <h2 class="rv" id="relH"></h2>
+    <div class="grid" id="rel"></div>
+  </div>
+</main>
+<div id="ftr"></div>
+<script src="data.js"></script>
+<script>
+const slug=new URLSearchParams(location.search).get('p')||'tama-mango';
+const p=PRODUCTS.find(x=>x.slug===slug)||PRODUCTS.find(x=>x.slug==='tama-mango');
+const B=BRANDS[p.brand];
+document.documentElement.style.setProperty('--c',B.c);
+document.documentElement.style.setProperty('--accent',B.c);
+const stage=document.getElementById('stage');
+stage.insertAdjacentHTML('beforeend',p.img?`<img src="${IMG+p.img}" alt="">`:`<div class="none"><b>${B.name[0]}</b><span id="pend"></span></div>`);
+stage.insertAdjacentHTML('beforeend',`<div class="badge" id="badge"></div>`);
+const sizes=p.sizes.split(' · ');
+let sel=sizes.includes('400g')?'400g':sizes.includes('250ml')?'250ml':sizes[0];
+const TOMATO=p.cat==='tomato'&&/paste/i.test(p.en);
+function draw(ar){
+  const bn=ar&&B.nameAr?B.nameAr:B.name, nm=ar?p.ar:p.en;
+  document.title=nm+' — '+bn;
+  document.getElementById('crumbs').innerHTML=`<a href="index.html">${ar?'الرئيسية':'Home'}</a><span class="sep">/</span><a href="products.html">${ar?'المنتجات':'Products'}</a><span class="sep">/</span><a href="brand.html?b=${p.brand}">${bn}</a><span class="sep">/</span><span>${nm}</span>`;
+  const t=document.getElementById('btag');t.textContent=bn;t.href='brand.html?b='+p.brand;
+  document.getElementById('pname').textContent=nm;
+  document.getElementById('plead').textContent=ar?`${nm} من ${bn}، ضمن تشكيلة ${B.ar}. يُصنع في منشأة تستينو فودز الحديثة بمدينة العاشر من رمضان، مع وضع الجودة وسلامة الغذاء في كل خطوة.`:`${nm} from ${bn}, part of our ${B.en.toLowerCase()} range. Made in Tastino Foods' modern facility in 10th of Ramadan, with quality and food safety at every step.`;
+  document.getElementById('sizes').innerHTML=sizes.map(s=>`<button class="chip-f ${s===sel?'on':''}" data-s="${s}" dir="ltr">${s}</button>`).join('');
+  document.getElementById('badge').textContent=(ar?PACKS[p.pack][1]:PACKS[p.pack][0])+' · '+sel;
+  const pend=document.getElementById('pend'); if(pend) pend.textContent=ar?'صورة المنتج قريباً':'Packshot coming soon';
+  const msg=encodeURIComponent((ar?'مرحباً، أود الاستفسار عن ':'Hello, I would like to ask about ')+`${bn} ${p.en} ${sel}`);
+  document.getElementById('wa').href='https://wa.me/201100111887?text='+msg;
+  document.getElementById('quote').href=`distributors.html?product=${p.slug}`;
+  const pend2=`<span class="pending">${ar?'تُضاف من تستينو':'To be supplied by Tastino'}</span>`;
+  const rows=[[ar?'العلامة':'Brand',bn],[ar?'الفئة':'Category',CATS[p.cat][ar?1:0]],[ar?'العبوة':'Packaging',PACKS[p.pack][ar?1:0]],[ar?'الأحجام':'Sizes',`<span dir="ltr">${p.sizes}</span>`],[ar?'مدة الصلاحية':'Shelf life',pend2],[ar?'التخزين':'Storage',pend2],[ar?'الكرتونة':'Units per carton',pend2]];
+  document.getElementById('specT').innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+  document.getElementById('ingr').innerHTML=TOMATO
+    ?(ar?'<b>المكونات:</b> معجون طماطم، ملح مضاف 2%، مواد صلبة ذائبة طبيعية من الطماطم 22–24%. خالٍ من الإضافات ومحسنات النكهة والألوان الصناعية.':'<b>Ingredients:</b> Tomato paste, added salt 2%, natural soluble solids (from tomato) 22–24%. Free from additives, flavor enhancers and artificial colors.')
+    :(ar?'<b>المكونات والقيم الغذائية:</b> تُضاف من ورقة مواصفات المنتج المعتمدة من تستينو.':'<b>Ingredients &amp; nutrition:</b> added from Tastino\'s approved product spec sheet.');
+  document.getElementById('relE').textContent=ar?`المزيد من ${bn}`:`More from ${bn}`;
+  document.getElementById('relH').textContent=ar?'قد يعجبك أيضاً':'You may also like';
+  const rel=PRODUCTS.filter(x=>x.brand===p.brand&&x.slug!==p.slug).sort((a,b)=>!!b.img-!!a.img).slice(0,4);
+  document.getElementById('rel').innerHTML=rel.map(x=>card(x,ar)).join('');
+  window.reveal&&reveal();
+}
+let AR_=false;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;sel=b.dataset.s;draw(AR_)});
+window.onLang=[ar=>{AR_=ar;draw(ar)}];
+</script>
+<script src="shared.js"></script>
+</body>
+</html>
