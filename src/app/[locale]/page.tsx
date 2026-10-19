@@ -1,7 +1,22 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
+import { setRequestLocale } from 'next-intl/server';
+import { AboutSection } from '@/components/home/AboutSection';
+import { BrandsSection } from '@/components/home/BrandsSection';
+import { Hero } from '@/components/home/Hero';
+import { InnovationSection } from '@/components/home/InnovationSection';
+import { PartnershipCta } from '@/components/home/PartnershipCta';
+import { PortfolioSection } from '@/components/home/PortfolioSection';
+import { ProductMarquee } from '@/components/home/ProductMarquee';
+import { RevealRoot } from '@/components/home/RevealRoot';
+import { SafetyBand } from '@/components/home/SafetyBand';
+import { ValueStrip } from '@/components/home/ValueStrip';
+import { getHomeData } from '@/lib/content/home';
 import { pageMetadata } from '@/lib/metadata';
+import '@/styles/home.css';
+
+// Content comes from the database; pages are rebuilt in the background at most once a minute,
+// so an admin change shows up within 60 seconds (US-008.1).
+export const revalidate = 60;
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -12,28 +27,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata(locale, 'home', '/');
 }
 
-// Minimal hero for Epic 1. Epic 3 builds the full animated homepage from the approved mockup.
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations('home');
+  const data = await getHomeData(locale);
+
   return (
-    <section className="mx-auto max-w-[1200px] px-6 pt-14 pb-24">
-      <p className="eyebrow">{t('eyebrow')}</p>
-      <h1 className="headline mt-4 text-[clamp(42px,6vw,76px)] font-extrabold">
-        {t('titleA')}
-        <br />
-        <span className="text-blue">{t('titleB')}</span>
-      </h1>
-      <p className="mt-6 max-w-[520px] text-lg leading-relaxed text-muted">{t('lead')}</p>
-      <div className="mt-8 flex flex-wrap gap-3.5">
-        <Link href="/brands" className="inline-flex items-center gap-2.5 rounded-full bg-blue px-6 py-3.5 font-bold text-white">
-          {t('explore')} <span aria-hidden="true" className="flip-rtl inline-block">→</span>
-        </Link>
-        <Link href="/distributors?reason=catalogue" className="inline-flex rounded-full border-2 border-ink px-6 py-3 font-bold hover:bg-ink hover:text-white">
-          {t('catalogue')}
-        </Link>
-      </div>
-    </section>
+    <div className="home">
+      <RevealRoot />
+      <Hero data={data} locale={locale} />
+      <ValueStrip />
+      <AboutSection data={data} />
+      <BrandsSection data={data} />
+      <ProductMarquee items={data.marquee} />
+      <SafetyBand data={data} />
+      <InnovationSection data={data} />
+      <PortfolioSection data={data} />
+      <PartnershipCta data={data} />
+    </div>
   );
 }

@@ -37,7 +37,8 @@ function sections(md: string, heading: string): { title: string; body: string }[
 
 /** Reads the client-supplied copy and pairs English and Arabic sections by order. */
 export async function loadOfficialCopy(file: string): Promise<CopyBlock[]> {
-  const md = (await readFile(file, 'utf8')).replace(/\r\n/g, '\n');
+  // The source file uses a little markdown (bold labels). Stored text is plain, so the markers are dropped.
+  const md = (await readFile(file, 'utf8')).replace(/\r\n/g, '\n').replace(/\*\*/g, '');
   const en = sections(md, '## English');
   const ar = sections(md, '## العربية');
   if (en.length !== BLOCK_KEYS.length || ar.length !== BLOCK_KEYS.length) {

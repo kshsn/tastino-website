@@ -124,6 +124,27 @@ export const PRODUCTS: ProductSeed[] = [
   { slug: 'the-leaf-iced-tea', line: 'THE_LEAF', category: 'iced-tea', nameEn: 'THE LEAF Iced Tea', nameAr: 'ذا ليف شاي مثلج', variants: RTD },
 ];
 
+/**
+ * Homepage hero showcase (max 3 published, US-008.5). The static headline lives in the messages; each slide
+ * supplies the chip under the packshot: `subline` = brand name, `headline` = product and size.
+ */
+export interface HeroSeed {
+  id: string;
+  accentColor: string;
+  headlineEn: string;
+  headlineAr: string;
+  sublineEn: string;
+  sublineAr: string;
+  image: string;
+  sortOrder: number;
+}
+
+export const HERO_SLIDES: HeroSeed[] = [
+  { id: 'seed-hero-1', accentColor: '#F39200', headlineEn: 'Mango Nectar · 250ml', headlineAr: 'نكتار مانجو · ٢٥٠ مل', sublineEn: 'TAMA', sublineAr: 'TAMA', image: 'tama-mango-nectar-250ml.png', sortOrder: 1 },
+  { id: 'seed-hero-2', accentColor: '#C8102E', headlineEn: 'Tomato Paste · 400g', headlineAr: 'معجون طماطم · ٤٠٠ جم', sublineEn: 'Liora', sublineAr: 'Liora', image: 'liora-tomato-paste-can.png', sortOrder: 2 },
+  { id: 'seed-hero-3', accentColor: '#0F6B3E', headlineEn: 'Vanilla Syrup · 800ml', headlineAr: 'شراب الفانيليا · ٨٠٠ مل', sublineEn: 'Freshness', sublineAr: 'Freshness', image: 'freshness-vanilla-syrup-800ml.png', sortOrder: 3 },
+];
+
 /** Neutral bilingual description built only from verified facts (brand, range, place of manufacture). */
 export function describe(p: ProductSeed): { en: string; ar: string } {
   const brand = p.brand ? BRANDS.find((b) => b.slug === p.brand)! : null;

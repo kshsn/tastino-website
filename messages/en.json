@@ -2,16 +2,45 @@
   "meta": {
     "siteName": "Tastino Foods",
     "tagline": "Crafted with Care. Inspired by Nature.",
-    "home": { "title": "Tastino Foods — Crafted with Care. Inspired by Nature.", "description": "Jams, tomato products, sauces, juices and syrups made in 10th of Ramadan, Egypt. Become a Tastino distributor across Egypt and MENA." },
-    "about": { "title": "About Tastino Foods", "description": "A modern food and beverage manufacturer in 10th of Ramadan Industrial City, Egypt." },
-    "brands": { "title": "Our Brands — Tastino Foods", "description": "Lora, Liora, Andiamo and TAMA: brands made to the Tastino standard." },
-    "products": { "title": "Products — Tastino Foods", "description": "Every Tastino product in one place: jams, tomato, sauces, juices and syrups." },
-    "quality": { "title": "Food Safety & Quality — Tastino Foods", "description": "Food safety comes first at Tastino Foods, from ingredients to the finished product." },
-    "innovation": { "title": "Innovation in Every Taste — Tastino Foods", "description": "How Tastino Foods develops balanced recipes with distinctive taste and value." },
-    "distributors": { "title": "Become a Distributor — Tastino Foods", "description": "Distribution, agency and business partnerships across Egypt and MENA." },
-    "privacy": { "title": "Privacy Policy — Tastino Foods", "description": "How Tastino Foods handles the personal data you send us." },
-    "terms": { "title": "Terms of Use — Tastino Foods", "description": "Terms for using the Tastino Foods website." },
-    "notFound": { "title": "Page not found — Tastino Foods" }
+    "home": {
+      "title": "Tastino Foods — Crafted with Care. Inspired by Nature.",
+      "description": "Jams, tomato products, sauces, juices and syrups made in 10th of Ramadan, Egypt. Become a Tastino distributor across Egypt and MENA."
+    },
+    "about": {
+      "title": "About Tastino Foods",
+      "description": "A modern food and beverage manufacturer in 10th of Ramadan Industrial City, Egypt."
+    },
+    "brands": {
+      "title": "Our Brands — Tastino Foods",
+      "description": "Lora, Liora, Andiamo and TAMA: brands made to the Tastino standard."
+    },
+    "products": {
+      "title": "Products — Tastino Foods",
+      "description": "Every Tastino product in one place: jams, tomato, sauces, juices and syrups."
+    },
+    "quality": {
+      "title": "Food Safety & Quality — Tastino Foods",
+      "description": "Food safety comes first at Tastino Foods, from ingredients to the finished product."
+    },
+    "innovation": {
+      "title": "Innovation in Every Taste — Tastino Foods",
+      "description": "How Tastino Foods develops balanced recipes with distinctive taste and value."
+    },
+    "distributors": {
+      "title": "Become a Distributor — Tastino Foods",
+      "description": "Distribution, agency and business partnerships across Egypt and MENA."
+    },
+    "privacy": {
+      "title": "Privacy Policy — Tastino Foods",
+      "description": "How Tastino Foods handles the personal data you send us."
+    },
+    "terms": {
+      "title": "Terms of Use — Tastino Foods",
+      "description": "Terms for using the Tastino Foods website."
+    },
+    "notFound": {
+      "title": "Page not found — Tastino Foods"
+    }
   },
   "nav": {
     "home": "Home",
@@ -66,6 +95,88 @@
     "titleB": "Inspired by nature.",
     "lead": "Jams, tomato products, sauces, juices and syrups, made in a modern facility in 10th of Ramadan with food safety at every step.",
     "explore": "Explore our brands",
-    "catalogue": "Request catalogue"
+    "catalogue": "Request catalogue",
+    "imageSoon": "Image coming soon",
+    "stats": {
+      "brands": "Brands",
+      "products": "Products",
+      "formats": "Packaging formats"
+    },
+    "chip": {
+      "title": "Made in Egypt",
+      "note": "10th of Ramadan Industrial City"
+    },
+    "hero": {
+      "group": "Featured Tastino products"
+    },
+    "features": {
+      "safety": {
+        "title": "Food Safety First",
+        "text": "Sanitation procedures and process monitoring at every stage of production."
+      },
+      "natural": {
+        "title": "Natural Ingredients",
+        "text": "Careful ingredient selection that preserves each product's natural character and flavor."
+      },
+      "facility": {
+        "title": "Modern Facility",
+        "text": "Advanced technologies and machinery in 10th of Ramadan Industrial City."
+      },
+      "partner": {
+        "title": "Partner Ready",
+        "text": "Retail, wholesale, foodservice and catering."
+      },
+      "heading": "Why partner with Tastino"
+    },
+    "about": {
+      "eyebrow": "Tastino Foods Inc.",
+      "pillar1": "Careful ingredient selection",
+      "pillar2": "Modern industrial infrastructure",
+      "pillar3": "Continuous team training"
+    },
+    "brands": {
+      "eyebrow": "Our brands",
+      "linesTag": "Tastino lines",
+      "linesCategory": "Syrups, traditional beverages & iced tea",
+      "productCount": "{count, plural, one {# product} other {# products}}"
+    },
+    "marquee": {
+      "label": "Tastino products"
+    },
+    "quality": {
+      "eyebrow": "Quality & safety",
+      "stepsLabel": "Food safety across production",
+      "step1": "Before manufacturing",
+      "step2": "During production",
+      "step3": "After completion",
+      "more": "How we approach quality"
+    },
+    "innovation": {
+      "eyebrow": "Research & development",
+      "more": "More on innovation"
+    },
+    "portfolio": {
+      "eyebrow": "One portfolio",
+      "more": "See all products",
+      "formatsTitle": "Packaging formats",
+      "formats": {
+        "glass": "Glass jars & bottles",
+        "pet": "PET containers & bottles",
+        "metal": "Metal cans"
+      },
+      "channelsTitle": "Market channels",
+      "channels": {
+        "retail": "Retail",
+        "wholesale": "Wholesale",
+        "foodservice": "Foodservice",
+        "catering": "Catering"
+      }
+    },
+    "cta": {
+      "label": "Sales & WhatsApp",
+      "form": "Become a distributor",
+      "whatsapp": "WhatsApp us",
+      "call": "Call sales"
+    }
   }
 }

@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { Prisma, type PrismaClient } from '@prisma/client';
 import { findBanned, missingForPublish } from '@/lib/content/rules';
 import { storeImage } from '@/lib/media/store';
-import { BRANDS, CATEGORIES, PRODUCTS, describe } from './catalogue';
+import { BRANDS, CATEGORIES, HERO_SLIDES, PRODUCTS, describe } from './catalogue';
 import { loadOfficialCopy, TAGLINE } from './copy';
 
 const ROOT = path.resolve(__dirname, '../..');
@@ -23,6 +23,7 @@ export interface SeedReport {
   products: number;
   variants: number;
   blocks: number;
+  heroSlides: number;
   media: number;
   skipped: string[];
 }
@@ -33,7 +34,7 @@ export interface SeedReport {
  */
 export async function runSeed(db: PrismaClient, opts: SeedOptions = {}): Promise<SeedReport> {
   const log = opts.log ?? (() => {});
-  const report: SeedReport = { brands: 0, categories: 0, products: 0, variants: 0, blocks: 0, media: 0, skipped: [] };
+  const report: SeedReport = { brands: 0, categories: 0, products: 0, variants: 0, blocks: 0, heroSlides: 0, media: 0, skipped: [] };
 
   const imageIds = new Map<string, string>();
   async function image(file: string | undefined, altEn: string, altAr: string) {
@@ -107,6 +108,19 @@ export async function runSeed(db: PrismaClient, opts: SeedOptions = {}): Promise
       }),
     ]);
     report.variants += p.variants.length;
+  }
+
+  // Hero slides are created once: re-seeding never overwrites what an admin has since edited.
+  for (const h of HERO_SLIDES) {
+    const imageId = await image(h.image, `${h.sublineEn} ${h.headlineEn}`, `${h.sublineAr} ${h.headlineAr}`);
+    const { image: _file, ...fields } = h;
+    void _file;
+    await db.heroSlide.upsert({
+      where: { id: h.id },
+      create: { ...fields, imageId, status: 'PUBLISHED' },
+      update: {},
+    });
+    report.heroSlides++;
   }
 
   for (const block of await loadOfficialCopy(COPY_FILE)) {
