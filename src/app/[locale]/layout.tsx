@@ -9,9 +9,9 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { env } from '@/env';
 import { dirOf, routing } from '@/i18n/routing';
 
-// Variable fonts: one file covers every weight. Cairo is not preloaded, so English pages never download it;
-// Arabic pages fetch it as soon as the CSS is parsed (swap, with a size-adjusted fallback to avoid layout shift).
-const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap' });
+// Variable fonts: one file covers every weight. Neither font is preloaded, so the hero image and scripts get the
+// bandwidth first; text paints at once in a size-adjusted fallback font and swaps when the font arrives (no layout shift).
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap', preload: false });
 const cairo = Cairo({ subsets: ['arabic', 'latin'], variable: '--font-cairo', display: 'swap', preload: false });
 
 // Only these message groups are used by client components, so only they are sent to the browser.
