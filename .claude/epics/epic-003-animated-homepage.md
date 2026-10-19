@@ -1,6 +1,6 @@
 # Epic 003 — Animated Homepage
 
-**Status:** Pending
+**Status:** Complete (PR open, awaiting review)
 **Phase:** 7 — Build
 **Release:** MVP · **Effort:** L
 
@@ -29,7 +29,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: rapid clicks on dots never leave two packshots on screen or two running timers.
 - [ ] Arabic: with `dir="rtl"`, the stage, chips and dots mirror and the headline has no letter-spacing.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -48,7 +48,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: scrolling in and out repeatedly runs the count-up only once.
 - [ ] Reduced motion: numbers appear at their final value instantly.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -67,7 +67,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: re-entering the viewport does not replay or double-apply the transform.
 - [ ] Reading is never delayed: text is in the DOM at first paint and the reveal runs after first contentful paint.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -86,7 +86,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: double-clicking a card produces one navigation.
 - [ ] No "Freshness", "THE LEAF" or traditional beverages brand page link exists anywhere on the card set.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -105,7 +105,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: not applicable; the duplicated set used for looping is hidden from screen readers so products are announced once.
 - [ ] Reduced motion: the strip is static and horizontally scrollable by touch or keyboard.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -125,7 +125,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: not applicable; links are plain anchors and a repeated click only navigates once.
 - [ ] Reduced motion: parallax is disabled and the image is static.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -144,7 +144,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: not applicable to links; repeated clicks open one tab each with no data created.
 - [ ] Arabic: button arrows mirror and the phone number reads left-to-right inside the Arabic text.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -163,13 +163,13 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 - [ ] Duplicate submission: clicking two links quickly cancels the first transition and completes only the second.
 - [ ] Reduced motion: navigation is instant with no transition.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
 ## Epic Checklist
-- [ ] All stories marked complete
-- [ ] Type check passing (`tsc --noEmit`)
-- [ ] Linter passing (`eslint .`)
-- [ ] Committed and pushed to GitHub
+- [x] All stories marked complete
+- [x] Type check passing (`tsc --noEmit`)
+- [x] Linter passing (`eslint .`)
+- [x] Committed and pushed to GitHub
 - [ ] Project CLAUDE.md updated with last completed epic
