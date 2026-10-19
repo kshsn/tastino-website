@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 /* Design tokens from the approved mockup (.claude/design/mockup/shared.css) */
-@theme {
+/* static: always emit the tokens, so plain CSS files (e.g. home.css) can use var(--color-*) */
+@theme static {
   --color-bg: #fffbf5;
   --color-ink: #14213d;
   --color-muted: #5b6475;
@@ -9,6 +10,7 @@
   --color-card: #ffffff;
   --color-blue: #1e6fd9;
   --color-green: #3fa34d;
+  --color-green-text: #2c7733; /* darker green for small text: 5.4:1 on the page background */
   --color-lora: #e23b3b;
   --color-liora: #c8102e;
   --color-andiamo: #d62828;
@@ -50,7 +52,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-green);
+  color: var(--color-green-text);
 }
 [dir='rtl'] .eyebrow {
   letter-spacing: 0;
@@ -59,6 +61,17 @@ body {
 /* Directional icons (arrows) mirror in RTL. */
 [dir='rtl'] .flip-rtl {
   transform: scaleX(-1);
+}
+
+/* Page transition: plays on client-side navigation only (see PageTransition). */
+.page-in {
+  animation: page-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
