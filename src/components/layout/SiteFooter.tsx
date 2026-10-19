@@ -43,7 +43,7 @@ export async function SiteFooter() {
               </li>
               <li>
                 <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
-                  {t('footer.whatsapp')} <span dir="ltr">{site.phoneDisplay}</span>
+                  {t('footer.whatsapp')} <bdi dir="ltr">{site.phoneDisplay}</bdi>
                 </a>
               </li>
               <li><address className="not-italic">{t('footer.address')}</address></li>
