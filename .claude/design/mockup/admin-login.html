@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin sign in — Tastino Foods (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<style>
+body{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:#FFFBF5}
+.art{position:relative;background:var(--ink);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:56px;color:#fff}
+.art h2{font-size:34px;font-weight:800;line-height:1.15;max-width:420px;position:relative;z-index:2}
+.art p{opacity:.7;margin-top:12px;position:relative;z-index:2}
+.art .blob{position:absolute;width:520px;height:520px;top:-90px;right:-120px;background:#1E6FD9;opacity:.35;animation:morph 10s ease-in-out infinite}
+.art img{position:absolute;filter:drop-shadow(0 26px 22px rgba(0,0,0,.45));animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-14px)}}
+@keyframes morph{0%,100%{border-radius:42% 58% 63% 37%/41% 44% 56% 59%}50%{border-radius:61% 39% 35% 65%/56% 61% 39% 44%}}
+.pane{display:grid;place-items:center;padding:30px}
+.box{width:100%;max-width:400px}
+.box img.logo{height:74px;margin-bottom:28px}
+.box h1{font-size:28px;font-weight:800;letter-spacing:-.02em}
+.box > p{color:var(--muted);margin:8px 0 26px;line-height:1.6}
+.field input{padding:13px 14px;font-size:15px}
+.pw{position:relative}
+.pw button{position:absolute;inset-inline-end:10px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--muted);font-weight:700;cursor:pointer;font-size:12px}
+.go{width:100%;justify-content:center;padding:14px;margin-top:6px;font-size:15px}
+.alert{display:none;border-radius:12px;padding:12px 14px;font-weight:600;margin-bottom:16px;line-height:1.5}
+.alert.err{display:block;background:#FFF1F1;color:#A61B1B}
+.alert.lock{display:block;background:#FFF4E0;color:#8A5300}
+.otp{display:flex;gap:10px;justify-content:space-between;margin:6px 0 18px;direction:ltr}
+.otp input{width:52px;height:60px;text-align:center;font-size:24px;font-weight:800;border:1.5px solid var(--line);border-radius:14px;background:#FFFEFC;outline:0}
+.otp input:focus{border-color:var(--blue);box-shadow:0 0 0 4px #E3EEFF}
+.otp.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.step2{display:none}
+.links{display:flex;justify-content:space-between;margin-top:18px;font-size:13px}
+.links a{color:var(--blue);font-weight:600}
+.demo{margin-top:30px;padding-top:16px;border-top:1px dashed var(--line);font-size:12px;color:var(--muted)}
+.demo button{border:0;background:none;color:var(--blue);text-decoration:underline;cursor:pointer;font-size:12px}
+@media (max-width:900px){body{grid-template-columns:1fr}.art{display:none}}
+</style>
+</head>
+<body>
+<div class="art">
+  <div class="blob"></div>
+  <img src="../../source/cutouts/tama-mango-nectar-250ml.png" style="height:300px;top:70px;left:70px" alt="">
+  <img src="../../source/cutouts/liora-tomato-paste-can.png" style="height:250px;top:160px;left:240px;animation-delay:-2s" alt="">
+  <img src="../../source/cutouts/freshness-caramel-syrup-pump-800ml.png" style="height:330px;top:40px;left:420px;animation-delay:-4s" alt="">
+  <h2>Manage brands, products and leads in one place.</h2>
+  <p>Tastino Foods admin · authorised staff only</p>
+</div>
+<div class="pane">
+  <div class="box">
+    <img class="logo" src="../../source/logo/tastino-logo.svg" alt="Tastino Foods Inc">
+    <div class="step1" id="s1">
+      <h1>Sign in</h1>
+      <p>Use your Tastino admin account.</p>
+      <div class="alert" id="a1"></div>
+      <form id="f1" novalidate>
+        <div class="field"><label>Email</label><input id="em" type="email" autocomplete="username" value="sara@tastinofoods.com"></div>
+        <div class="field"><label>Password</label><div class="pw"><input id="pw" type="password" autocomplete="current-password" style="width:100%"><button type="button" id="eye">Show</button></div></div>
+        <button class="btn primary go" id="b1">Continue</button>
+      </form>
+      <div class="links"><a href="#">Forgot password?</a><span class="note">Session ends after 30 min idle</span></div>
+    </div>
+    <div class="step2" id="s2">
+      <h1>Two-step verification</h1>
+      <p>Enter the 6-digit code from your authenticator app for <b>sara@tastinofoods.com</b>.</p>
+      <div class="alert" id="a2"></div>
+      <div class="otp" id="otp"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"><input maxlength="1" inputmode="numeric"></div>
+      <button class="btn primary go" id="b2">Verify and sign in</button>
+      <div class="links"><a href="#" id="back">← Back</a><a href="#">Use a recovery code</a></div>
+    </div>
+    <div class="demo">Preview states: <button id="dWrong">wrong password</button> · <button id="dLock">locked out</button> · <button id="dOtp">wrong code</button> · any password + code <b>123456</b> signs in</div>
+  </div>
+</div>
+<script>
+const $=id=>document.getElementById(id);let fails=0;
+function alert1(cls,msg){const a=$('a1');a.className='alert '+cls;a.textContent=msg}
+$('eye').onclick=()=>{const p=$('pw');p.type=p.type==='password'?'text':'password';$('eye').textContent=p.type==='password'?'Show':'Hide'};
+$('f1').onsubmit=e=>{e.preventDefault();
+  if(!$('em').value||!$('pw').value){alert1('err','Enter your email and password.');return}
+  if($('pw').value==='wrong'){fails++;if(fails>=5){lock();return}alert1('err',`Email or password is incorrect. ${5-fails} attempt(s) left before a 15-minute lock.`);return}
+  $('s1').style.display='none';$('s2').style.display='block';$('otp').children[0].focus()};
+function lock(){alert1('lock','Too many failed attempts. This account is locked for 15 minutes. A Super admin has been notified.');$('b1').disabled=true}
+const boxes=[...$('otp').children];
+boxes.forEach((b,i)=>{b.oninput=()=>{b.value=b.value.replace(/\D/g,'');if(b.value&&i<5)boxes[i+1].focus();if(boxes.every(x=>x.value))verify()};b.onkeydown=e=>{if(e.key==='Backspace'&&!b.value&&i)boxes[i-1].focus()};
+  b.onpaste=e=>{const t=(e.clipboardData.getData('text')||'').replace(/\D/g,'').slice(0,6);if(t.length===6){e.preventDefault();t.split('').forEach((c,k)=>boxes[k].value=c);verify()}}});
+function verify(){const code=boxes.map(b=>b.value).join('');
+  if(code==='123456'){location.href='admin-leads.html';return}
+  const a=$('a2');a.className='alert err';a.textContent='That code is not valid or has expired. Try the latest code.';
+  $('otp').classList.remove('shake');void $('otp').offsetWidth;$('otp').classList.add('shake');boxes.forEach(b=>b.value='');boxes[0].focus()}
+$('b2').onclick=verify;
+$('back').onclick=e=>{e.preventDefault();$('s2').style.display='none';$('s1').style.display='block'};
+$('dWrong').onclick=()=>{$('pw').value='wrong';$('f1').requestSubmit()};
+$('dLock').onclick=()=>{fails=4;$('pw').value='wrong';$('f1').requestSubmit()};
+$('dOtp').onclick=()=>{$('pw').value='x';$('f1').requestSubmit();setTimeout(()=>{'111111'.split('').forEach((c,k)=>boxes[k].value=c);verify()},300)};
+</script>
+</body>
+</html>

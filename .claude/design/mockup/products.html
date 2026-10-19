@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Products — Tastino Foods (mockup)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.phead{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end;padding:40px 0 34px}
+.phead p{color:var(--muted);line-height:1.7}
+.marq{position:relative;height:150px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq .tr{display:flex;gap:40px;width:max-content;animation:scroll 50s linear infinite;align-items:flex-end;height:100%}
+.marq img{height:130px;width:auto}
+@keyframes scroll{to{transform:translateX(-50%)}}
+[dir=rtl] .marq .tr{animation-name:scrollR}
+@keyframes scrollR{to{transform:translateX(50%)}}
+.bar{position:sticky;top:84px;z-index:20;background:rgba(255,251,245,.94);backdrop-filter:blur(10px);padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:28px}
+.bar-in{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.row label{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:78px}
+[dir=rtl] .row label{letter-spacing:0}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:11px 18px}
+.search input{border:0;outline:0;font:inherit;flex:1;background:transparent}
+.count{font-weight:700;font-size:14px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.empty{display:none;text-align:center;padding:70px 20px;border:2px dashed var(--line);border-radius:28px}
+.empty b{font-size:22px;display:block;margin-bottom:8px}
+.reset{background:none;border:0;color:var(--accent);font-weight:700;cursor:pointer;font-family:inherit;font-size:14px}
+.pcard{animation:pop .5s cubic-bezier(.2,1.3,.3,1) both}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.96)}}
+@media (max-width:960px){
+  .phead{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pcard .ph{height:170px}
+  .row label{min-width:100%}
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+  .chip-f{white-space:nowrap}
+}
+</style>
+</head>
+<body data-page="products">
+<div id="hdr"></div>
+<main class="wrap">
+  <div class="crumbs"><a href="index.html" data-ar="الرئيسية">Home</a><span class="sep">/</span><span data-ar="المنتجات">Products</span></div>
+  <div class="phead">
+    <div class="rv"><div class="eyebrow" data-ar="تنوع المنتجات">A Diverse Product Portfolio</div><h1 style="margin-top:12px" data-ar="كل منتجاتنا في مكان واحد">Every product, one place</h1></div>
+    <p class="rv" data-ar="منتجات ونكهات وأوزان وأحجام وأنواع عبوات متنوعة لتلبية متطلبات شرائح متعددة من العملاء وقنوات التوزيع.">A diverse range of products, flavors, weights, sizes and packaging formats for different customer segments and market channels.</p>
+  </div>
+  <div class="marq rv"><div class="tr" id="marq"></div></div>
+
+  <div class="bar">
+    <div class="bar-in">
+      <div class="row">
+        <div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" placeholder="Search products…"></div>
+        <span class="count" id="count"></span>
+      </div>
+      <div class="row"><label data-ar="العلامة">Brand</label><div class="chips" id="fBrand"></div></div>
+      <div class="row"><label data-ar="الفئة">Category</label><div class="chips" id="fCat"></div></div>
+      <div class="row"><label data-ar="العبوة">Pack</label><div class="chips" id="fPack"></div></div>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty"><b data-ar="لا توجد منتجات مطابقة">No products match</b><span class="muted" data-ar="جرّب إزالة بعض الفلاتر.">Try removing some filters.</span><br><br><button class="reset" id="reset2" data-ar="إعادة ضبط الفلاتر">Reset filters</button></div>
+</main>
+<div id="ftr"></div>
+<script src="data.js"></script>
+<script>
+const st={brand:new URLSearchParams(location.search).get('brand')||'all',cat:'all',pack:'all',q:''};
+let AR_=false;
+const marq=document.getElementById('marq');
+const shots=PRODUCTS.filter(p=>p.img);[...shots,...shots].forEach(p=>{const i=document.createElement('img');i.src=IMG+p.img;i.alt='';marq.appendChild(i)});
+function chips(id,key,opts){
+  document.getElementById(id).innerHTML=[['all',AR_?'الكل':'All'],...opts].map(([v,l])=>`<button class="chip-f ${st[key]===v?'on':''}" data-k="${key}" data-v="${v}">${l}</button>`).join('');
+}
+function render(){
+  chips('fBrand','brand',Object.entries(BRANDS).map(([k,b])=>[k,AR_&&b.nameAr?b.nameAr:b.name]));
+  chips('fCat','cat',Object.entries(CATS).map(([k,v])=>[k,v[AR_?1:0]]));
+  chips('fPack','pack',Object.entries(PACKS).map(([k,v])=>[k,v[AR_?1:0]]));
+  const q=st.q.trim().toLowerCase();
+  const list=PRODUCTS.filter(p=>(st.brand==='all'||p.brand===st.brand)&&(st.cat==='all'||p.cat===st.cat)&&(st.pack==='all'||p.pack===st.pack)&&(!q||(p.en+' '+p.ar+' '+BRANDS[p.brand].name).toLowerCase().includes(q)));
+  document.getElementById('grid').innerHTML=list.map(p=>card(p,AR_).replace(' rv"','"')).join('');
+  document.getElementById('empty').style.display=list.length?'none':'block';
+  document.getElementById('count').textContent=AR_?`${list.length.toLocaleString('ar-EG')} منتج`:`${list.length} products`;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('.chip-f');if(!b)return;st[b.dataset.k]=b.dataset.v;render()});
+document.getElementById('q').addEventListener('input',e=>{st.q=e.target.value;render()});
+document.getElementById('reset2').onclick=()=>{Object.assign(st,{brand:'all',cat:'all',pack:'all',q:''});document.getElementById('q').value='';render()};
+window.onLang=[ar=>{AR_=ar;document.getElementById('q').placeholder=ar?'ابحث عن منتج…':'Search products…';render()}];
+</script>
+<script src="shared.js"></script>
+</body>
+</html>
