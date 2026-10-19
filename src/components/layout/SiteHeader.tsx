@@ -16,7 +16,7 @@ export async function SiteHeader() {
           <Logo label={t('meta.siteName')} />
         </Link>
         <nav aria-label={t('header.mainNav')} className="hidden lg:block">
-          <ul className="flex gap-6 text-[15px] font-semibold">
+          <ul className="flex gap-4 text-[15px] font-semibold xl:gap-6">
             {NAV_ITEMS.slice(1).map((item) => (
               <li key={item.key}>
                 <Link
@@ -35,7 +35,7 @@ export async function SiteHeader() {
           </Suspense>
           <Link
             href="/distributors"
-            className="hidden rounded-full bg-blue px-6 py-3.5 text-[15px] font-bold text-white shadow-[0_10px_24px_-10px_var(--color-blue)] transition-transform hover:-translate-y-0.5 md:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-blue px-5 py-3.5 text-[15px] font-bold text-white xl:px-6 shadow-[0_10px_24px_-10px_var(--color-blue)] transition-transform hover:-translate-y-0.5 md:inline-flex"
           >
             {t('nav.cta')}
           </Link>
