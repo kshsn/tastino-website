@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "siteName": "Tastino Foods",
+    "tagline": "Crafted with Care. Inspired by Nature.",
+    "home": { "title": "Tastino Foods — Crafted with Care. Inspired by Nature.", "description": "Jams, tomato products, sauces, juices and syrups made in 10th of Ramadan, Egypt. Become a Tastino distributor across Egypt and MENA." },
+    "about": { "title": "About Tastino Foods", "description": "A modern food and beverage manufacturer in 10th of Ramadan Industrial City, Egypt." },
+    "brands": { "title": "Our Brands — Tastino Foods", "description": "Lora, Liora, Andiamo and TAMA: brands made to the Tastino standard." },
+    "products": { "title": "Products — Tastino Foods", "description": "Every Tastino product in one place: jams, tomato, sauces, juices and syrups." },
+    "quality": { "title": "Food Safety & Quality — Tastino Foods", "description": "Food safety comes first at Tastino Foods, from ingredients to the finished product." },
+    "innovation": { "title": "Innovation in Every Taste — Tastino Foods", "description": "How Tastino Foods develops balanced recipes with distinctive taste and value." },
+    "distributors": { "title": "Become a Distributor — Tastino Foods", "description": "Distribution, agency and business partnerships across Egypt and MENA." },
+    "privacy": { "title": "Privacy Policy — Tastino Foods", "description": "How Tastino Foods handles the personal data you send us." },
+    "terms": { "title": "Terms of Use — Tastino Foods", "description": "Terms for using the Tastino Foods website." },
+    "notFound": { "title": "Page not found — Tastino Foods" }
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "brands": "Brands",
+    "products": "Products",
+    "quality": "Quality",
+    "innovation": "Innovation",
+    "distributors": "Distributors",
+    "contact": "Contact",
+    "cta": "Become a Distributor"
+  },
+  "header": {
+    "logoLabel": "Tastino Foods — home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mainNav": "Main",
+    "switchTo": "عربي",
+    "switchToLabel": "اقرأ هذه الصفحة بالعربية"
+  },
+  "footer": {
+    "tagline": "Crafted with care. Inspired by nature.",
+    "company": "Company",
+    "contact": "Contact",
+    "email": "Email",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "address": "Industrial City, 10th of Ramadan, C5, Building No. 21",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "rights": "© {year} Tastino Foods Inc. All rights reserved."
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "title": "We couldn't find that page",
+    "body": "The link may be old or mistyped. Try the home page, or contact our sales team.",
+    "home": "Back to home",
+    "contact": "Contact us"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "body": "Sorry, we couldn't load this page. Please try again in a moment.",
+    "retry": "Try again",
+    "home": "Back to home"
+  },
+  "stub": {
+    "note": "This page is being built. Its full content arrives in a later release."
+  },
+  "home": {
+    "eyebrow": "Made in Egypt · Shipped across MENA",
+    "titleA": "Crafted with care.",
+    "titleB": "Inspired by nature.",
+    "lead": "Jams, tomato products, sauces, juices and syrups, made in a modern facility in 10th of Ramadan with food safety at every step.",
+    "explore": "Explore our brands",
+    "catalogue": "Request catalogue"
+  }
+}
