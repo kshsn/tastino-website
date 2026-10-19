@@ -18,6 +18,10 @@ describe('loadOfficialCopy (US-002.7)', () => {
     const block = (await loadOfficialCopy(FILE)).find((b) => b.key === 'food-safety')!;
     expect(block.titleAr).toBe('سلامة الغذاء أولاً');
   });
+  it('stores plain text without markdown bold markers', async () => {
+    const text = (await loadOfficialCopy(FILE)).map((b) => `${b.titleEn} ${b.bodyEn} ${b.titleAr} ${b.bodyAr}`).join(' ');
+    expect(text).not.toContain('**');
+  });
   it('contains none of the old borrowed boilerplate', async () => {
     const text = (await loadOfficialCopy(FILE)).map((b) => `${b.bodyEn} ${b.bodyAr}`).join(' ');
     expect(findBanned(text)).toEqual([]);
