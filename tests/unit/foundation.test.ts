@@ -19,7 +19,12 @@ describe('US-001.1 env validation', () => {
     expect(() => parseEnv({})).toThrow(/SITE_URL/);
   });
   it('strips a trailing slash from SITE_URL', () => {
-    expect(parseEnv({ SITE_URL: 'https://tastinofoods.com/' }).SITE_URL).toBe('https://tastinofoods.com');
+    expect(parseEnv({ SITE_URL: 'https://tastinofoods.com/', DATABASE_URL: 'postgresql://x@h/db' }).SITE_URL).toBe(
+      'https://tastinofoods.com',
+    );
+  });
+  it('names DATABASE_URL when it is missing', () => {
+    expect(() => parseEnv({ SITE_URL: 'https://tastinofoods.com' })).toThrow(/DATABASE_URL/);
   });
 });
 

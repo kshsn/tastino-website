@@ -1,6 +1,6 @@
 # Epic 002 — Data and Media
 
-**Status:** Pending
+**Status:** Complete (PR open, awaiting review)
 **Phase:** 7 — Build
 **Release:** MVP · **Effort:** M
 
@@ -27,7 +27,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Network failure: a dropped database connection during a read returns a handled error (HTTP 503 page), not an unhandled crash.
 - [ ] Duplicate submission: creating two products with the same slug fails with a unique-constraint error that is surfaced as a readable message.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -45,7 +45,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Network failure: a failed migration leaves the database in its prior version (transactional migration).
 - [ ] Duplicate submission: two Users with the same email (case-insensitive) cannot be created.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -63,7 +63,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Network failure: the seed uses only local files and needs no network.
 - [ ] Duplicate submission: re-running the seed does not duplicate brands or lines (idempotent by slug).
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -83,7 +83,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Duplicate submission: a product whose slug already exists is updated, not duplicated.
 - [ ] A test fails the build if any stored name or description contains a banned misspelling (Katchup, Sesam, Orang).
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -102,7 +102,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Duplicate submission: uploading the same file twice stores one set of derivatives (hash match) or clearly versions it.
 - [ ] A source smaller than 2000px (e.g. the Andiamo lineup, about 380px tall) is never upscaled beyond its natural size.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -120,7 +120,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Network failure: if an image file returns 404 or times out, the placeholder replaces it via an `onError` fallback.
 - [ ] Duplicate submission: not applicable; replacing a placeholder by uploading a real image removes the flag in the same save.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -138,7 +138,7 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Network failure: copy is read from a local file during seed, with no network call.
 - [ ] Duplicate submission: re-seeding does not overwrite a block that an admin edited (compares a "modified by admin" marker).
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -156,13 +156,13 @@ Provide a bilingual PostgreSQL/Prisma data model, a seed built from the catalogu
 - [ ] Network failure: a failed publish request changes nothing (atomic update).
 - [ ] Duplicate submission: publishing an already-published item is a no-op and writes one audit entry at most.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
 ## Epic Checklist
-- [ ] All stories marked complete
-- [ ] Type check passing (`tsc --noEmit`)
-- [ ] Linter passing (`eslint .`)
+- [x] All stories marked complete
+- [x] Type check passing (`tsc --noEmit`)
+- [x] Linter passing (`eslint .`)
 - [ ] Committed and pushed to GitHub
 - [ ] Project CLAUDE.md updated with last completed epic
