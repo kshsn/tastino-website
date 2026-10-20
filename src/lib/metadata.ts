@@ -29,3 +29,17 @@ export async function pageMetadata(locale: string, key: string, path: string): P
     },
   };
 }
+
+const clip = (text: string, max: number) => (text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`);
+
+/** Metadata for pages whose title and description come from content (brand and product pages). */
+export async function contentMetadata(locale: string, path: string, title: string, description: string): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'meta' });
+  const url = `${env.SITE_URL}/${locale}${path}`;
+  return {
+    title: clip(title, 60),
+    description: clip(description, 160),
+    alternates: alternates(locale, path),
+    openGraph: { title: clip(title, 60), description: clip(description, 160), url, siteName: t('siteName'), locale: locale === 'ar' ? 'ar_EG' : 'en_US', type: 'website' },
+  };
+}
