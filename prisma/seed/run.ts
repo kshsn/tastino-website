@@ -111,15 +111,14 @@ export async function runSeed(db: PrismaClient, opts: SeedOptions = {}): Promise
   }
 
   // Hero slides are created once: re-seeding never overwrites what an admin has since edited.
+  // The only thing it fills in later is a missing image (e.g. the first seed ran with media skipped).
   for (const h of HERO_SLIDES) {
     const imageId = await image(h.image, `${h.sublineEn} ${h.headlineEn}`, `${h.sublineAr} ${h.headlineAr}`);
     const { image: _file, ...fields } = h;
     void _file;
-    await db.heroSlide.upsert({
-      where: { id: h.id },
-      create: { ...fields, imageId, status: 'PUBLISHED' },
-      update: {},
-    });
+    const existing = await db.heroSlide.findUnique({ where: { id: h.id } });
+    if (!existing) await db.heroSlide.create({ data: { ...fields, imageId, status: 'PUBLISHED' } });
+    else if (!existing.imageId && imageId) await db.heroSlide.update({ where: { id: h.id }, data: { imageId } });
     report.heroSlides++;
   }
 
