@@ -1,6 +1,6 @@
 # Epic 004 — Brands and Products
 
-**Status:** Pending
+**Status:** Complete (PR open, awaiting review)
 **Phase:** 7 — Build
 **Release:** MVP · **Effort:** L
 
@@ -27,7 +27,7 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Network failure: a database error returns the localized error page, not a partial list.
 - [ ] Duplicate submission: not applicable; opening the page twice yields the same order (sorted by `sortOrder`).
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -46,7 +46,7 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Network failure: the page is statically generated and revalidated on content change, so a database outage serves the last good version.
 - [ ] Duplicate submission: not applicable; slug lookups are case-insensitive and redirect `/brands/Lora` to `/brands/lora`.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -66,7 +66,7 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Duplicate submission: changing filters rapidly shows only the last result (earlier requests are cancelled).
 - [ ] Tastino-line products (Freshness, traditional beverages, THE LEAF) appear in the listing with the "Tastino" tag instead of a brand.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -86,7 +86,7 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Duplicate submission: not applicable to a read page; a renamed slug redirects the old slug (301) to the new one.
 - [ ] Liquid products display "Net Volume" (not "Net Weight") and spelling is correct in both languages.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -105,7 +105,7 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Duplicate submission: not applicable; a product exists in only one line (unique constraint on productLine).
 - [ ] Arabic names of traditional beverages (e.g. عرق سوس) render with correct shaping and RTL order.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -124,7 +124,7 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Duplicate submission: duplicate product names within a brand are reported as errors.
 - [ ] Tomato paste in tin 400g is allowed; the 400g rule is not flagged as an error for Liora.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -142,13 +142,13 @@ Let visitors browse every brand, filter and find any product, and read its detai
 - [ ] Network failure: the CTA is a normal link and works without JavaScript.
 - [ ] Duplicate submission: not applicable to links; the prefilled WhatsApp text is URL-encoded, including Arabic.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
 ## Epic Checklist
-- [ ] All stories marked complete
-- [ ] Type check passing (`tsc --noEmit`)
-- [ ] Linter passing (`eslint .`)
-- [ ] Committed and pushed to GitHub
+- [x] All stories marked complete
+- [x] Type check passing (`tsc --noEmit`)
+- [x] Linter passing (`eslint .`)
+- [x] Committed and pushed to GitHub
 - [ ] Project CLAUDE.md updated with last completed epic
