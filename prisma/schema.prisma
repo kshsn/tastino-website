@@ -168,6 +168,22 @@ model MediaAsset {
   heroSlides  HeroSlide[]
 }
 
+enum SlugKind {
+  BRAND
+  PRODUCT
+}
+
+/// Old slug of a renamed brand or product. Public pages answer an old slug with a 301 to `targetSlug`.
+model SlugRedirect {
+  id         String   @id @default(cuid())
+  kind       SlugKind
+  oldSlug    String
+  targetSlug String
+  createdAt  DateTime @default(now())
+
+  @@unique([kind, oldSlug])
+}
+
 // ───────────────────────── Content ─────────────────────────
 
 model HeroSlide {

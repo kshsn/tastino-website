@@ -32,8 +32,8 @@ export interface ProductFilter {
 export async function getPublishedProducts(filter: ProductFilter = {}) {
   const where: Prisma.ProductWhereInput = {
     ...PUBLISHED,
-    // A product under a hidden or unpublished brand is not public either.
-    OR: [{ brandId: null }, { brand: { ...PUBLISHED, visibility: { not: 'HIDDEN' } } }],
+    // A product is public only under a live, published brand (hidden and coming-soon brands show no products).
+    OR: [{ brandId: null }, { brand: { ...PUBLISHED, visibility: 'LIVE' } }],
     ...(filter.brand ? { brand: { slug: filter.brand } } : {}),
     ...(filter.line ? { productLine: filter.line } : {}),
     ...(filter.category ? { category: { slug: filter.category } } : {}),
@@ -53,7 +53,7 @@ export async function getPublishedProducts(filter: ProductFilter = {}) {
 
 export async function getPublishedProduct(slug: string) {
   const p = await db.product.findFirst({
-    where: { slug, ...PUBLISHED, OR: [{ brandId: null }, { brand: { ...PUBLISHED, visibility: { not: 'HIDDEN' } } }] },
+    where: { slug, ...PUBLISHED, OR: [{ brandId: null }, { brand: { ...PUBLISHED, visibility: 'LIVE' } }] },
     include: { brand: true, category: true, image: imageSelect, variants: { where: { shown: true }, orderBy: { sortOrder: 'asc' } } },
   });
   if (!p) return null;

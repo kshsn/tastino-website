@@ -9,13 +9,16 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
 import { env } from '@/env';
 import { dirOf, routing } from '@/i18n/routing';
 
-// Variable fonts: one file covers every weight. Neither font is preloaded, so the hero image and scripts get the
-// bandwidth first; text paints at once in a size-adjusted fallback font and swaps when the font arrives (no layout shift).
+// Variable fonts: one file covers every weight.
+// - Cairo (Arabic letters only, 30 KB) is preloaded: Arabic text must not reflow when the font arrives, because the
+//   system Arabic fallback has very different metrics (it caused layout shift on the product list).
+// - Plus Jakarta Sans (Latin) is not preloaded, so the hero image and scripts get the bandwidth first. Its fallback is
+//   size-adjusted, so the swap does not move anything. Latin letters in Arabic pages also use it.
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakarta', display: 'swap', preload: false });
-const cairo = Cairo({ subsets: ['arabic', 'latin'], variable: '--font-cairo', display: 'swap', preload: false });
+const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo', display: 'swap' });
 
 // Only these message groups are used by client components, so only they are sent to the browser.
-const CLIENT_MESSAGES = ['header', 'nav', 'error'] as const;
+const CLIENT_MESSAGES = ['header', 'nav', 'error', 'notFound'] as const;
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.SITE_URL),

@@ -40,6 +40,10 @@
     },
     "notFound": {
       "title": "Page not found — Tastino Foods"
+    },
+    "lines": {
+      "title": "Tastino Lines — Tastino Foods",
+      "description": "Freshness syrups, traditional beverages and THE LEAF iced tea, made by Tastino."
     }
   },
   "nav": {
@@ -177,6 +181,120 @@
       "form": "Become a distributor",
       "whatsapp": "WhatsApp us",
       "call": "Call sales"
+    }
+  },
+  "catalogue": {
+    "crumbs": {
+      "home": "Home",
+      "brands": "Brands",
+      "products": "Products",
+      "lines": "Tastino lines"
+    },
+    "nav": "Breadcrumb",
+    "tastino": "Tastino",
+    "imageSoon": "Image coming soon",
+    "productCount": "{count, plural, one {# product} other {# products}}",
+    "sizesOnRequest": "Sizes on request",
+    "packs": {
+      "glass": "Glass",
+      "pet": "PET",
+      "can": "Metal can",
+      "tin": "Tin"
+    },
+    "brandsIndex": {
+      "eyebrow": "Our brands",
+      "title": "A brand for every table",
+      "intro": "Four brands with their own identities, all made to the Tastino standard.",
+      "comingSoon": "Coming soon",
+      "empty": "No brands yet",
+      "emptyBody": "Our brands will appear here soon.",
+      "contact": "Contact us",
+      "linesEyebrow": "Under the Tastino name",
+      "linesTitle": "Tastino lines",
+      "linesBody": "Freshness syrups, traditional beverages and THE LEAF iced tea are made by Tastino and sold without a separate brand.",
+      "linesCta": "See the Tastino lines"
+    },
+    "brandPage": {
+      "intro": "{name}: {category}. Made by Tastino Foods in 10th of Ramadan Industrial City with strict quality and food-safety standards.",
+      "products": "Products",
+      "packTypes": "Pack types",
+      "seeRange": "See the range",
+      "distribute": "Distribute this brand",
+      "rangeEyebrow": "The full range",
+      "rangeTitle": "Every flavour, every size",
+      "rangeSoon": "Range coming soon",
+      "soonTitle": "Coming soon",
+      "soonBody": "{name} is on its way. Tell us if you would like to carry it.",
+      "madeBy": "Made by",
+      "madeByValue": "Tastino Foods, 10th of Ramadan",
+      "packaging": "Packaging",
+      "channels": "Channels",
+      "channelsValue": "Retail · Wholesale · Foodservice · Catering",
+      "others": "Other Tastino brands",
+      "band": "Want {name} on your shelves?",
+      "whatsapp": "WhatsApp",
+      "become": "Become a distributor",
+      "waText": "Hello, I would like to ask about {name}"
+    },
+    "listing": {
+      "eyebrow": "A diverse product portfolio",
+      "title": "Every product, one place",
+      "intro": "A diverse range of products, flavors, weights, sizes and packaging formats for different customer segments and market channels.",
+      "filtersLabel": "Filter products",
+      "brand": "Brand",
+      "category": "Category",
+      "pack": "Pack",
+      "all": "All",
+      "searchLabel": "Search products",
+      "search": "Search products…",
+      "searchButton": "Search",
+      "count": "{count, plural, one {# product} other {# products}}",
+      "empty": "No products match",
+      "emptyBody": "Try removing some filters.",
+      "clear": "Clear filters"
+    },
+    "product": {
+      "sizes": "Available sizes",
+      "enquire": "Enquire about this product",
+      "whatsapp": "WhatsApp",
+      "specs": "Specifications",
+      "brand": "Brand",
+      "line": "Line",
+      "category": "Category",
+      "packaging": "Packaging",
+      "netWeight": "Net weight",
+      "netVolume": "Net volume",
+      "shelfLife": "Shelf life",
+      "storage": "Storage",
+      "ingredients": "Ingredients",
+      "variantsTitle": "Sizes and packaging",
+      "colSize": "Size",
+      "colPack": "Pack",
+      "packOnRequest": "Pack on request",
+      "moreFrom": "More from {name}",
+      "related": "You may also like",
+      "waText": "Hello, I would like to ask about {name} ({sizes})"
+    },
+    "lines": {
+      "eyebrow": "Under the Tastino name",
+      "title": "Tastino lines",
+      "intro": "These products are made by Tastino and sold under the Tastino name, without a separate brand.",
+      "freshness": {
+        "title": "Freshness",
+        "tagline": "More Flavor in Every Drop",
+        "body": "Flavored syrups in 800ml glass bottles."
+      },
+      "traditional": {
+        "title": "Traditional beverages",
+        "tagline": "Hibiscus, Carob, Qamar Al Din and Licorice",
+        "body": "Traditional Egyptian beverages in 330ml packs."
+      },
+      "theLeaf": {
+        "title": "THE LEAF",
+        "tagline": "Iced tea",
+        "body": "Iced tea in 330ml packs."
+      },
+      "cta": "Become a distributor"
     }
   }
 }
