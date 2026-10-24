@@ -13,6 +13,7 @@ import { ValueStrip } from '@/components/home/ValueStrip';
 import { getHomeData } from '@/lib/content/home';
 import { pageMetadata } from '@/lib/metadata';
 import '@/styles/home.css';
+import '@/styles/hero.css';
 
 // Content comes from the database; pages are rebuilt in the background at most once a minute,
 // so an admin change shows up within 60 seconds (US-008.1).
