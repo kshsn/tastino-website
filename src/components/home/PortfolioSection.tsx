@@ -1,5 +1,4 @@
 import { getTranslations } from 'next-intl/server';
-import { Picture } from '@/components/ui/Picture';
 import { Link } from '@/i18n/navigation';
 import type { HomeData } from '@/lib/content/home';
 import { Paragraphs } from './Paragraphs';
@@ -27,17 +26,6 @@ export async function PortfolioSection({ data }: PortfolioSectionProps) {
           </div>
           {lead && <p>{lead}</p>}
         </div>
-
-        {data.shelf.length > 0 && (
-          <div className="shelf" data-reveal>
-            {data.shelf.map((p) => (
-              <figure key={p.slug}>
-                <Picture image={p.picture} sizes="(max-width: 960px) 30vw, 150px" placeholder={t('imageSoon')} decorative />
-                <figcaption>{p.name}</figcaption>
-              </figure>
-            ))}
-          </div>
-        )}
 
         <div className="formats" data-reveal>
           <div>
