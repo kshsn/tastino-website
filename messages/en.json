@@ -111,7 +111,14 @@
       "note": "10th of Ramadan Industrial City"
     },
     "hero": {
-      "group": "Featured Tastino products"
+      "group": "Featured Tastino products",
+      "explore": "Explore {brand}",
+      "prev": "Previous slide",
+      "next": "Next slide",
+      "pause": "Pause slideshow",
+      "play": "Play slideshow",
+      "slideOf": "Slide {n} of {total}",
+      "videoRegion": "Tastino Foods video"
     },
     "features": {
       "safety": {

@@ -19,6 +19,8 @@ export interface HomeSlide {
   brand: string;
   label: string;
   picture: PictureData | null;
+  /** The brand page when the slide's brand is a live brand, otherwise the product list. */
+  href: string;
 }
 
 export interface HomeBlock {
@@ -84,7 +86,8 @@ export async function getHomeData(locale: string): Promise<HomeData> {
     const label = pick(locale, h.headlineEn, h.headlineAr);
     const brand = pick(locale, h.sublineEn, h.sublineAr);
     if (!nonBlank(label) || !nonBlank(brand)) return [];
-    return [{ id: h.id, accent: safeAccent(h.accentColor), brand, label, picture: toPictureData(h.image, locale, `${brand} ${label}`) }];
+    const owner = liveBrands.find((b) => [b.nameEn, b.nameAr].some((n) => n.trim().toLowerCase() === brand.trim().toLowerCase()));
+    return [{ id: h.id, accent: safeAccent(h.accentColor), brand, label, picture: toPictureData(h.image, locale, `${brand} ${label}`), href: owner ? `/brands/${encodeURIComponent(owner.slug)}` : '/products' }];
   });
 
   const blocks: HomeData['blocks'] = {};
