@@ -154,6 +154,9 @@ export async function runSeed(db: PrismaClient, opts: SeedOptions = {}): Promise
   }
 
   const settings: { key: string; value: Prisma.InputJsonValue; isPrivate?: boolean }[] = [
+    // Mockup wording; the client confirms the real promise before launch.
+    { key: 'leads.responseTimeEn', value: 'within one business day' },
+    { key: 'leads.responseTimeAr', value: 'خلال يوم عمل واحد' },
     { key: 'contact.email', value: 'info@tastinofoods.com' },
     { key: 'contact.phone', value: '+201100111887' },
     { key: 'contact.whatsapp', value: '+201100111887' },
