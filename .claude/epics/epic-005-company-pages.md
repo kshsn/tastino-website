@@ -1,6 +1,6 @@
 # Epic 005 — Company Pages
 
-**Status:** Pending
+**Status:** Complete for MVP stories (US-005.6 and US-005.7 are R2); PR open
 **Phase:** 7 — Build
 **Release:** MVP (basic pages) / R2 (polish)  · **Effort:** S
 
@@ -27,7 +27,7 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: the page is pre-built and served even if the database is down.
 - [ ] Duplicate submission: not applicable; a read page. Facts not yet supplied (founding year, headcount, leadership) are not shown rather than invented.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -45,7 +45,7 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: the text is available without loading certificate files.
 - [ ] Duplicate submission: not applicable; the same certificate uploaded twice shows once (dedupe by file hash).
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -63,7 +63,7 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: pre-built page served.
 - [ ] Duplicate submission: not applicable; read page.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -81,7 +81,7 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: the page is static and available when the database is unavailable.
 - [ ] Duplicate submission: not applicable; a read page. Version date is shown so text changes are traceable.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -99,7 +99,7 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: static page served.
 - [ ] Duplicate submission: not applicable; read page.
 
-**Status:** [ ] Pending
+**Status:** [x] Complete
 
 ---
 
@@ -117,7 +117,7 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: a failed download shows the browser error and the page stays usable.
 - [ ] Duplicate submission: the same file uploaded twice produces one entry.
 
-**Status:** [ ] Pending
+**Status:** [ ] Pending (R2)
 
 ---
 
@@ -135,13 +135,13 @@ Publish About, Quality, Innovation, Privacy and Terms pages in both languages us
 - [ ] Network failure: a failed image shows the placeholder and the layout stays stable.
 - [ ] Duplicate submission: the same photo uploaded twice shows once.
 
-**Status:** [ ] Pending
+**Status:** [ ] Pending (R2)
 
 ---
 
 ## Epic Checklist
-- [ ] All stories marked complete
-- [ ] Type check passing (`tsc --noEmit`)
-- [ ] Linter passing (`eslint .`)
-- [ ] Committed and pushed to GitHub
+- [x] All MVP stories marked complete (US-005.6 and US-005.7 are R2)
+- [x] Type check passing (`tsc --noEmit`)
+- [x] Linter passing (`eslint .`)
+- [x] Committed and pushed to GitHub
 - [ ] Project CLAUDE.md updated with last completed epic
