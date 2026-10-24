@@ -1,5 +1,3 @@
-import type { PictureData } from '@/lib/media/types';
-
 export interface HeroLink {
   href: string;
   label: string;
@@ -21,18 +19,7 @@ export interface HeroVideoModel {
   secondary: HeroLink;
 }
 
-/** A published product slide: brand-colored panel with the packshot. */
-export interface HeroProductModel {
-  kind: 'product';
-  id: string;
-  accent: string;
-  brand: string;
-  label: string;
-  picture: PictureData | null;
-  cta: HeroLink;
-}
-
-export type HeroSlideModel = HeroVideoModel | HeroProductModel;
+export type HeroSlideModel = HeroVideoModel;
 
 export interface HeroLabels {
   region: string;
@@ -42,7 +29,4 @@ export interface HeroLabels {
   play: string;
   /** Template with {n} and {total}; a plain string because functions cannot cross from server to client components. */
   slideOf: string;
-  placeholder: string;
-  madeIn: string;
-  madeInNote: string;
 }
