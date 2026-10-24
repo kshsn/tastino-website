@@ -3,6 +3,8 @@ import type { HeroLabels } from './hero-types';
 
 interface HeroControlsProps {
   count: number;
+  /** The slider holds a video, so a pause button is needed even with a single slide. */
+  hasVideo: boolean;
   index: number;
   /** The visitor (or a focus pause) stopped the automatic change. */
   paused: boolean;
@@ -27,17 +29,21 @@ const Chevron = () => (
 );
 
 /** Arrows at the sides, and one pill with the pause button and a progress dot per slide. */
-export function HeroControls({ count, index, paused, still, durationMs, cycle, labels, slideLabels, onPick, onPrev, onNext, onToggle }: HeroControlsProps) {
+export function HeroControls({ count, hasVideo, index, paused, still, durationMs, cycle, labels, slideLabels, onPick, onPrev, onNext, onToggle }: HeroControlsProps) {
   return (
     <>
-      <button type="button" className="hs-arrow hs-arrow-prev" onClick={onPrev} aria-label={labels.prev}>
-        <Chevron />
-      </button>
-      <button type="button" className="hs-arrow hs-arrow-next" onClick={onNext} aria-label={labels.next}>
-        <Chevron />
-      </button>
+      {count > 1 && (
+        <>
+          <button type="button" className="hs-arrow hs-arrow-prev" onClick={onPrev} aria-label={labels.prev}>
+            <Chevron />
+          </button>
+          <button type="button" className="hs-arrow hs-arrow-next" onClick={onNext} aria-label={labels.next}>
+            <Chevron />
+          </button>
+        </>
+      )}
       <div className="hs-bar">
-        {!still && (
+        {!still && (count > 1 || hasVideo) && (
           <button type="button" className="hs-toggle" onClick={onToggle} aria-label={paused ? labels.play : labels.pause}>
             {paused ? (
               <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>
@@ -46,6 +52,7 @@ export function HeroControls({ count, index, paused, still, durationMs, cycle, l
             )}
           </button>
         )}
+        {count > 1 && (
         <ol className="hs-dots">
           {Array.from({ length: count }, (_, k) => (
             <li key={k}>
@@ -65,6 +72,7 @@ export function HeroControls({ count, index, paused, still, durationMs, cycle, l
             </li>
           ))}
         </ol>
+        )}
       </div>
     </>
   );
