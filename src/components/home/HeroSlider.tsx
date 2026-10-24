@@ -12,6 +12,8 @@ interface HeroSliderProps {
   slides: HeroSlideModel[];
   labels: HeroLabels;
   rtl: boolean;
+  /** 'hero' is the video at the top of the page; 'products' is the product slides further down. */
+  variant?: 'hero' | 'products';
 }
 
 /**
@@ -19,8 +21,10 @@ interface HeroSliderProps {
  * It changes by itself, and stops while the visitor pauses it, while focus is inside it, and always under reduced
  * motion. Arrows, dots, keyboard arrows and swipes move it and restart the timer.
  */
-export function HeroSlider({ slides, labels, rtl }: HeroSliderProps) {
+export function HeroSlider({ slides, labels, rtl, variant = 'hero' }: HeroSliderProps) {
   const count = slides.length;
+  const hasVideo = slides.some((s) => s.kind === 'video');
+  const firstIsVideo = slides[0]?.kind === 'video';
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
@@ -44,9 +48,9 @@ export function HeroSlider({ slides, labels, rtl }: HeroSliderProps) {
     const id = window.setTimeout(() => {
       setIndex((i) => wrapIndex(i + 1, count));
       setCycle((n) => n + 1);
-    }, slideDuration(index));
+    }, slideDuration(index, firstIsVideo));
     return () => window.clearTimeout(id);
-  }, [running, index, cycle, count]);
+  }, [running, index, cycle, count, firstIsVideo]);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
@@ -69,7 +73,7 @@ export function HeroSlider({ slides, labels, rtl }: HeroSliderProps) {
 
   return (
     <section
-      className="hs"
+      className={`hs hs-${variant}`}
       aria-roledescription="carousel"
       aria-label={labels.region}
       onKeyDown={onKeyDown}
@@ -97,13 +101,14 @@ export function HeroSlider({ slides, labels, rtl }: HeroSliderProps) {
           </div>
         ))}
       </div>
-      {count > 1 && (
+      {(count > 1 || hasVideo) && (
         <HeroControls
           count={count}
+          hasVideo={hasVideo}
           index={index}
           paused={paused}
           still={reduced}
-          durationMs={slideDuration(index)}
+          durationMs={slideDuration(index, firstIsVideo)}
           cycle={cycle}
           labels={labels}
           slideLabels={slideLabels}
