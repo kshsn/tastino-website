@@ -18,13 +18,15 @@
     "db:seed": "tsx --env-file=.env prisma/seed.ts",
     "test:integration": "vitest run -c vitest.integration.config.ts",
     "test:content": "vitest run -c vitest.content.config.ts",
-    "check:launch": "tsx --env-file=.env scripts/check-launch.ts"
+    "check:launch": "tsx --env-file=.env scripts/check-launch.ts",
+    "leads:retry-emails": "tsx --env-file=.env scripts/retry-lead-emails.ts"
   },
   "dependencies": {
     "@prisma/client": "6.19.3",
     "framer-motion": "14.3.0",
     "next": "16.4.2",
     "next-intl": "4.14.9",
+    "nodemailer": "10.2.1",
     "react": "19.1.10",
     "react-dom": "19.1.10",
     "server-only": "0.0.1",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "22.20.5",
+    "@types/nodemailer": "8.0.2",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "eslint": "9.39.5",

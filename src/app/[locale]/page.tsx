@@ -6,13 +6,13 @@ import { Hero } from '@/components/home/Hero';
 import { InnovationSection } from '@/components/home/InnovationSection';
 import { PartnershipCta } from '@/components/home/PartnershipCta';
 import { PortfolioSection } from '@/components/home/PortfolioSection';
-import { ProductMarquee } from '@/components/home/ProductMarquee';
 import { RevealRoot } from '@/components/home/RevealRoot';
 import { SafetyBand } from '@/components/home/SafetyBand';
 import { ValueStrip } from '@/components/home/ValueStrip';
 import { getHomeData } from '@/lib/content/home';
 import { pageMetadata } from '@/lib/metadata';
 import '@/styles/home.css';
+import '@/styles/hero.css';
 
 // Content comes from the database; pages are rebuilt in the background at most once a minute,
 // so an admin change shows up within 60 seconds (US-008.1).
@@ -39,7 +39,6 @@ export default async function HomePage({ params }: Props) {
       <ValueStrip />
       <AboutSection data={data} />
       <BrandsSection data={data} />
-      <ProductMarquee items={data.marquee} />
       <SafetyBand data={data} />
       <InnovationSection data={data} />
       <PortfolioSection data={data} />

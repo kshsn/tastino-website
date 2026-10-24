@@ -1,0 +1,32 @@
+export interface HeroLink {
+  href: string;
+  label: string;
+}
+
+/** First slide: the looping video with the page headline over it. */
+export interface HeroVideoModel {
+  kind: 'video';
+  id: 'video';
+  src: string;
+  /** Smaller file for phones. */
+  srcSmall: string;
+  poster: string;
+  eyebrow: string;
+  titleA: string;
+  titleB: string;
+  lead: string;
+  primary: HeroLink;
+  secondary: HeroLink;
+}
+
+export type HeroSlideModel = HeroVideoModel;
+
+export interface HeroLabels {
+  region: string;
+  prev: string;
+  next: string;
+  pause: string;
+  play: string;
+  /** Template with {n} and {total}; a plain string because functions cannot cross from server to client components. */
+  slideOf: string;
+}

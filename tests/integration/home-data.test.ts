@@ -19,6 +19,10 @@ async function withChange<T>(apply: () => Promise<unknown>, restore: () => Promi
 }
 
 describe('getHomeData: hero (US-003.1)', () => {
+  it('links a slide to its brand page, and to the product list when the slide is not a brand', async () => {
+    const { slides } = await getHomeData('en');
+    expect(slides.map((s) => s.href)).toEqual(['/brands/tama', '/brands/liora', '/products']);
+  });
   it('cycles exactly the published slides in sortOrder', async () => {
     const { slides } = await getHomeData('en');
     expect(slides.map((s) => s.brand)).toEqual(['TAMA', 'Liora', 'Freshness']);
@@ -155,9 +159,9 @@ describe('getHomeData: product strip, fan and shelf (US-003.5 / US-003.6)', () =
   it('has a product strip of at least four items', async () => {
     expect((await getHomeData('en')).marquee.length).toBeGreaterThanOrEqual(4);
   });
-  it('never puts a mislabelled (Liora-labelled Lora) jam packshot in the strip', async () => {
+  it('never puts the still mislabelled (Liora-labelled) strawberry jam packshot in the strip', async () => {
     const slugs = (await getHomeData('en')).marquee.map((m) => m.slug);
-    expect(slugs.filter((s) => s.startsWith('lora-'))).toEqual([]);
+    expect(slugs).not.toContain('lora-strawberry-jam');
   });
   it('gives every strip item a picture', async () => {
     expect((await getHomeData('en')).marquee.every((m) => m.picture !== null)).toBe(true);

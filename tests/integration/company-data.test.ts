@@ -19,9 +19,9 @@ async function withChange<T>(apply: () => Promise<unknown>, restore: () => Promi
   }
 }
 
-const approve = (key: 'privacy' | 'terms') =>
+const approve = (key: 'privacy' | 'terms' | 'consent') =>
   db.setting.upsert({ where: { key: `legal.${key}.approved` }, create: { key: `legal.${key}.approved`, value: '2026-11-01' }, update: { value: '2026-11-01' } });
-const unapprove = (key: 'privacy' | 'terms') => db.setting.deleteMany({ where: { key: `legal.${key}.approved` } });
+const unapprove = (key: 'privacy' | 'terms' | 'consent') => db.setting.deleteMany({ where: { key: `legal.${key}.approved` } });
 
 describe('About page data (US-005.1)', () => {
   it('has the official About copy and tagline in English', async () => {
@@ -151,12 +151,12 @@ describe('Legal pages (US-005.4 / US-005.5)', () => {
 
 describe('launch gate (US-005.4 / US-005.5)', () => {
   it('fails while the legal drafts are not approved', async () => {
-    expect((await getLaunchBlockers()).map((b) => b.id).sort()).toEqual(['privacy-unapproved', 'terms-unapproved']);
+    expect((await getLaunchBlockers()).map((b) => b.id).sort()).toEqual(['consent-unapproved', 'privacy-unapproved', 'terms-unapproved']);
   });
   it('passes once both are approved', async () => {
     const blockers = await withChange(
-      () => Promise.all([approve('privacy'), approve('terms')]),
-      () => Promise.all([unapprove('privacy'), unapprove('terms')]),
+      () => Promise.all([approve('privacy'), approve('terms'), approve('consent')]),
+      () => Promise.all([unapprove('privacy'), unapprove('terms'), unapprove('consent')]),
       () => getLaunchBlockers(),
     );
     expect(blockers).toEqual([]);

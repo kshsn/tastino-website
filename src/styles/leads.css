@@ -1,0 +1,110 @@
+/*
+ * Distributors and contact page (Epic 6). Ported from the approved mockup distributors.html.
+ * Scoped under .lf. Logical properties keep RTL correct; motion is off under prefers-reduced-motion.
+ */
+
+.lf { --err: #b3261e; }
+.lf .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.lf.page { padding-bottom: 90px; }
+.lf a:focus-visible, .lf button:focus-visible, .lf input:focus-visible, .lf select:focus-visible, .lf textarea:focus-visible { outline: 3px solid var(--color-blue); outline-offset: 2px; }
+.lf h1 { font-size: clamp(34px, 4.4vw, 56px); line-height: 1.05; font-weight: 800; letter-spacing: -.03em; margin-top: 12px; }
+[dir='rtl'] .lf h1 { letter-spacing: 0; line-height: 1.3; }
+.lf .eyebrow { color: var(--color-green-text); font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+[dir='rtl'] .lf .eyebrow { letter-spacing: 0; }
+
+.lf .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: transform .25s, background .25s; }
+.lf .btn-primary { background: var(--color-blue); color: #fff; box-shadow: 0 10px 24px -10px var(--color-blue); }
+.lf .btn-primary:hover:not(:disabled) { transform: translateY(-3px); }
+.lf .btn-wa { background: #167a3f; color: #fff; }
+.lf .btn:disabled { opacity: .7; cursor: progress; }
+[dir='rtl'] .lf .arr { display: inline-block; transform: scaleX(-1); }
+
+.lf .crumbs { font-size: 13px; color: var(--color-muted); padding-top: 26px; }
+.lf .crumbs ol { display: flex; gap: 8px; flex-wrap: wrap; list-style: none; padding: 0; }
+.lf .crumbs li + li::before { content: '/'; opacity: .5; margin-inline-end: 8px; }
+.lf .crumbs [aria-current] { color: var(--color-ink); font-weight: 600; }
+
+.lf-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 50px; align-items: start; padding: 36px 0 20px; }
+.lf-pitch { position: sticky; top: 110px; }
+.lf-pitch > p { color: var(--color-muted); line-height: 1.8; margin-top: 18px; }
+.lf-who { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 26px; list-style: none; padding: 0; }
+.lf-who li { background: #fff; border: 1px solid var(--color-line); border-radius: 16px; padding: 14px; font-weight: 700; font-size: 14px; display: flex; gap: 10px; align-items: center; }
+.lf-who li::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--color-green); flex: none; }
+
+.lf-reach { display: grid; gap: 10px; margin-top: 26px; list-style: none; padding: 0; }
+.lf-reach a, .lf-reach li > div { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--color-line); border-radius: 18px; padding: 14px 16px; transition: .25s; }
+.lf-reach li > a:hover { transform: translateX(6px); border-color: var(--color-ink); }
+[dir='rtl'] .lf-reach li > a:hover { transform: translateX(-6px); }
+.lf-reach i { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-style: normal; color: #fff; font-weight: 800; flex: none; }
+.lf-reach i.wa { background: #167a3f; }
+.lf-reach i.mail { background: var(--color-blue); }
+.lf-reach i.pin { background: var(--color-ink); }
+.lf-reach small { display: block; color: var(--color-muted); font-size: 12px; }
+.lf-reach address { font-style: normal; font-weight: 700; }
+.lf-reach b { overflow-wrap: anywhere; }
+.lf-reach li > div a.map { display: inline-block; margin-top: 6px; padding: 0; border: 0; background: none; color: var(--color-blue); text-decoration: underline; font-size: 13px; font-weight: 600; }
+
+.lf-card { background: #fff; border-radius: 32px; padding: 38px; box-shadow: 0 40px 80px -50px rgba(20, 33, 61, .45); border: 1px solid var(--color-line); position: relative; overflow: hidden; }
+
+.lf-reasons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 26px; padding: 0; border: 0; min-width: 0; }
+.lf-reasons label { border: 1.5px solid var(--color-line); background: #fff; border-radius: 16px; padding: 12px 8px; font-weight: 700; font-size: 13px; text-align: center; cursor: pointer; transition: .25s; position: relative; }
+.lf-reasons input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.lf-reasons label.on { background: var(--color-ink); color: #fff; border-color: var(--color-ink); }
+.lf-reasons label:has(input:focus-visible) { outline: 3px solid var(--color-blue); outline-offset: 2px; }
+
+.lf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.lf-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; min-width: 0; }
+.lf-field > label, .lf-brands legend { font-size: 13px; font-weight: 700; padding: 0; }
+.lf-field label em { color: var(--err); font-style: normal; }
+.lf-field input:not([type='checkbox']):not([type='radio']), .lf-field select, .lf-field textarea { font: inherit; font-size: 15px; border: 1.5px solid #8a8f9a; border-radius: 14px; padding: 13px 14px; background: #fffdfa; transition: border-color .2s, box-shadow .2s; width: 100%; min-width: 0; }
+.lf-field textarea { resize: vertical; min-height: 110px; }
+.lf-field input:focus, .lf-field select:focus, .lf-field textarea:focus { border-color: var(--color-blue); box-shadow: 0 0 0 4px #e3eeff; }
+.lf-field.err input:not([type='checkbox']), .lf-field.err select, .lf-field.err textarea { border-color: var(--err); background: #fff6f6; }
+.lf-msg { font-size: 13px; color: var(--err); font-weight: 600; }
+.lf-phone { display: flex; gap: 8px; }
+.lf-phone select { width: 120px; flex: none; }
+.lf-phone input { flex: 1; }
+
+.lf-brands { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
+.lf-brands legend { margin-bottom: 7px; }
+.lf-brands > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.lf-brands label { display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--color-line); border-radius: 999px; padding: 9px 14px; font-weight: 700; font-size: 13px; cursor: pointer; transition: .2s; }
+.lf-brands input { accent-color: var(--color-blue); width: 16px; height: 16px; }
+.lf-brands label:has(input:checked) { border-color: var(--color-ink); background: #f4f1ec; }
+
+.lf-consent > label { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--color-muted); line-height: 1.6; font-weight: 400; }
+.lf-consent input { margin-top: 4px; accent-color: var(--color-blue); width: 18px; height: 18px; flex: none; }
+.lf-consent a { color: var(--color-blue); text-decoration: underline; }
+.lf-consent.err > label { color: var(--err); }
+
+/* honeypot: out of sight, out of tab order, hidden from screen readers (aria-hidden on the wrapper) */
+.lf-hp { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.lf-submit { width: 100%; margin-top: 18px; padding: 17px; }
+.lf-spin { width: 18px; height: 18px; border: 2.5px solid rgba(255, 255, 255, .4); border-top-color: #fff; border-radius: 50%; animation: lf-sp .8s linear infinite; }
+@keyframes lf-sp { to { transform: rotate(360deg); } }
+
+.lf-banner { background: #fff1f1; color: #a61b1b; border-radius: 14px; padding: 12px 14px; font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+
+.lf-done { text-align: center; padding: 30px 10px; }
+.lf-done svg { display: block; margin: 0 auto; width: 96px; height: 96px; }
+.lf-done circle { stroke: var(--color-green); stroke-dasharray: 300; stroke-dashoffset: 300; animation: lf-dr .8s forwards; }
+.lf-done path { stroke: var(--color-green); stroke-dasharray: 60; stroke-dashoffset: 60; animation: lf-dr .5s .7s forwards; }
+@keyframes lf-dr { to { stroke-dashoffset: 0; } }
+.lf-done h2 { margin: 18px 0 10px; font-size: 32px; font-weight: 800; }
+.lf-done h2:focus { outline: none; }
+.lf-done p { color: var(--color-muted); line-height: 1.7; max-width: 420px; margin: 0 auto 24px; }
+.lf-ref { display: inline-block; background: #f4f1ec; border-radius: 999px; padding: 8px 14px; font-weight: 700; font-size: 13px; margin-bottom: 22px; }
+
+@media (max-width: 960px) {
+  .lf-layout { grid-template-columns: 1fr; }
+  .lf-pitch { position: static; }
+  .lf-card { padding: 24px; }
+  .lf-reasons { grid-template-columns: 1fr 1fr; }
+  .lf-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lf-done circle, .lf-done path { animation: none; stroke-dashoffset: 0; }
+  .lf-spin { animation-duration: 2s; }
+}

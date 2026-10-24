@@ -1,9 +1,9 @@
 import { cache } from 'react';
 import { toPictureData } from '@/lib/media/picture';
 import type { PictureData } from '@/lib/media/types';
-import { displayPhone, telLink } from '@/lib/phone';
 import { pick } from '@/lib/text';
 import { loadBlocks } from './blocks';
+import { contactFrom } from './contact';
 import { getPublicSettings, getPublishedProducts } from './public';
 
 export type LegalKind = 'privacy' | 'terms';
@@ -20,20 +20,6 @@ function picturesFor(products: Products, slugs: readonly string[], locale: strin
 }
 
 const str = (v: unknown) => (typeof v === 'string' && v.trim() ? v.trim() : '');
-
-const SIMPLE_EMAIL = /^[^\s@?&]+@[^\s@?&]+\.[^\s@?&]+$/;
-
-/** Address, phone and email from the public settings; anything not set is simply absent. */
-function contactFrom(settings: Awaited<ReturnType<typeof getPublicSettings>>, locale: string) {
-  const phone = str(settings['contact.phone']);
-  return {
-    address: str(pick(locale, settings['contact.addressEn'], settings['contact.addressAr'])),
-    phoneDisplay: phone ? displayPhone(phone) : '',
-    tel: telLink(phone),
-    // Only a plain address becomes a mailto: link; anything with spaces, "?" or "&" (extra mail fields) is dropped.
-    email: SIMPLE_EMAIL.test(str(settings['contact.email'])) ? str(settings['contact.email']) : '',
-  };
-}
 
 /** About: official story copy, three packshots for the collage, and contact facts from settings. */
 export const getAboutPage = cache(async (locale: string) => {

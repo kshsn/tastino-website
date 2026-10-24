@@ -20,7 +20,7 @@ export interface BrandSeed {
 export const BRANDS: BrandSeed[] = [
   { slug: 'lora', nameEn: 'Lora', nameAr: 'Lora', categoryEn: 'Premium Jams', categoryAr: 'مربى فاخر', accentColor: '#E23B3B', sortOrder: 1, image: 'lora-jam-lineup-6.png' },
   { slug: 'liora', nameEn: 'Liora', nameAr: 'Liora', categoryEn: 'Tomato Products', categoryAr: 'منتجات الطماطم', accentColor: '#C8102E', sortOrder: 2, image: 'liora-tomato-paste-can.png' },
-  { slug: 'andiamo', nameEn: 'Andiamo', nameAr: 'Andiamo', categoryEn: 'Sauces & Tahini', categoryAr: 'صوصات وطحينة', taglineEn: 'Inspired by nature', taglineAr: 'مستوحى من الطبيعة', accentColor: '#D62828', sortOrder: 3, image: 'andiamo-bbq-ketchup-mustard.png' },
+  { slug: 'andiamo', nameEn: 'Andiamo', nameAr: 'Andiamo', categoryEn: 'Sauces & Tahini', categoryAr: 'صوصات وطحينة', taglineEn: 'Inspired by nature', taglineAr: 'مستوحى من الطبيعة', accentColor: '#D62828', sortOrder: 3, image: 'andiamo-sauce-collection.png' },
   { slug: 'tama', nameEn: 'TAMA', nameAr: 'TAMA', categoryEn: 'Juices & Nectars', categoryAr: 'عصائر ونكتار', accentColor: '#2F8F3A', sortOrder: 4, image: 'tama-guava-orange-250ml.png' },
 ];
 
@@ -71,11 +71,11 @@ const TOMATO_AR = 'معجون طماطم، ملح مضاف 2%، مواد صلب�
 export const PRODUCTS: ProductSeed[] = [
   // Lora — jams. Individual packshots supplied so far carry the Liora label.
   { slug: 'lora-strawberry-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Strawberry Jam', nameAr: 'مربى الفراولة الفاخرة', variants: JAM, image: 'liora-strawberry-jam.png', imageNeedsReplacement: true },
-  { slug: 'lora-apricot-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Apricot Jam', nameAr: 'مربى المشمش الفاخرة', variants: JAM, image: 'liora-apricot-jam-370g.png', imageNeedsReplacement: true },
-  { slug: 'lora-blueberry-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Blueberry Jam', nameAr: 'مربى التوت الفاخرة', variants: JAM, image: 'liora-blueberry-jam.png', imageNeedsReplacement: true },
-  { slug: 'lora-fig-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Fig Jam', nameAr: 'مربى التين الفاخرة', variants: JAM },
-  { slug: 'lora-orange-marmalade', brand: 'lora', category: 'jams', nameEn: 'Premium Orange Marmalade', nameAr: 'مربى البرتقال الفاخرة', variants: JAM },
-  { slug: 'lora-guava-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Guava Jam', nameAr: 'مربى الجوافة الفاخرة', variants: JAM },
+  { slug: 'lora-apricot-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Apricot Jam', nameAr: 'مربى المشمش الفاخرة', variants: JAM, image: 'lora-apricot-jam.png' },
+  { slug: 'lora-blueberry-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Blueberry Jam', nameAr: 'مربى التوت الفاخرة', variants: JAM, image: 'lora-blueberry-jam.png' },
+  { slug: 'lora-fig-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Fig Jam', nameAr: 'مربى التين الفاخرة', variants: JAM, image: 'lora-fig-jam.png' },
+  { slug: 'lora-orange-marmalade', brand: 'lora', category: 'jams', nameEn: 'Premium Orange Marmalade', nameAr: 'مربى البرتقال الفاخرة', variants: JAM, image: 'lora-orange-marmalade.png' },
+  { slug: 'lora-guava-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Guava Jam', nameAr: 'مربى الجوافة الفاخرة', variants: JAM, image: 'lora-guava-jam.png' },
   { slug: 'lora-mixed-berry-jam', brand: 'lora', category: 'jams', nameEn: 'Mixed Berry Jam', nameAr: 'مربى التوت المشكل', variants: JAM },
   { slug: 'lora-peach-jam', brand: 'lora', category: 'jams', nameEn: 'Peach Jam', nameAr: 'مربى الخوخ', variants: JAM },
   { slug: 'lora-mango-jam', brand: 'lora', category: 'jams', nameEn: 'Mango Jam', nameAr: 'مربى المانجو', variants: JAM },
@@ -92,25 +92,25 @@ export const PRODUCTS: ProductSeed[] = [
   { slug: 'andiamo-hot-sauce-special', brand: 'andiamo', category: 'sauces', nameEn: 'Hot Sauce Special', nameAr: 'شطة حارة', variants: SAUCE, image: 'andiamo-hot-sauce.png' },
   { slug: 'andiamo-hummus-tahini', brand: 'andiamo', category: 'sauces', nameEn: 'Hummus Tahini', nameAr: 'حمص بالطحينة', variants: SAUCE, image: 'andiamo-hummus-tahini.png' },
   { slug: 'andiamo-sesame-tahini', brand: 'andiamo', category: 'sauces', nameEn: 'Sesame Tahini', nameAr: 'طحينة السمسم', variants: SAUCE, image: 'andiamo-sesame-tahini.png' },
-  { slug: 'andiamo-tomato-paste', brand: 'andiamo', category: 'tomato', nameEn: 'Tomato Paste', nameAr: 'معجون طماطم', variants: [[400, 'G', 'TIN']], image: 'andiamo-tomato-paste-400g.png' },
+  { slug: 'andiamo-tomato-paste', brand: 'andiamo', category: 'tomato', nameEn: 'Tomato Paste', nameAr: 'معجون طماطم', variants: [[400, 'G', 'TIN']], image: 'andiamo-tomato-paste.png' },
 
   // TAMA — juices & nectars
-  { slug: 'tama-mango-nectar', brand: 'tama', category: 'juices', nameEn: 'Mango Nectar', nameAr: 'نكتار مانجو', variants: TAMA, image: 'tama-mango-nectar-250ml.png' },
-  { slug: 'tama-lemon-nectar', brand: 'tama', category: 'juices', nameEn: 'Lemon Nectar', nameAr: 'نكتار ليمون', variants: TAMA, image: 'tama-lemon-nectar-250ml.png' },
+  { slug: 'tama-mango-nectar', brand: 'tama', category: 'juices', nameEn: 'Mango Nectar', nameAr: 'نكتار مانجو', variants: TAMA, image: 'tama-mango-nectar.png' },
+  { slug: 'tama-lemon-nectar', brand: 'tama', category: 'juices', nameEn: 'Lemon Nectar', nameAr: 'نكتار ليمون', variants: TAMA, image: 'tama-lemon-nectar.png' },
   { slug: 'tama-guava-orange-nectar', brand: 'tama', category: 'juices', nameEn: 'Guava & Orange Nectar', nameAr: 'نكتار جوافة برتقال', variants: TAMA, image: 'tama-guava-orange-250ml.png' },
-  { slug: 'tama-guava-nectar', brand: 'tama', category: 'juices', nameEn: 'Guava Nectar', nameAr: 'نكتار جوافة', variants: TAMA },
-  { slug: 'tama-strawberry-nectar', brand: 'tama', category: 'juices', nameEn: 'Strawberry Nectar', nameAr: 'نكتار فراولة', variants: TAMA },
-  { slug: 'tama-peach-nectar', brand: 'tama', category: 'juices', nameEn: 'Peach Nectar', nameAr: 'نكتار خوخ', variants: TAMA },
-  { slug: 'tama-apple-nectar', brand: 'tama', category: 'juices', nameEn: 'Apple Nectar', nameAr: 'نكتار تفاح', variants: TAMA },
+  { slug: 'tama-guava-nectar', brand: 'tama', category: 'juices', nameEn: 'Guava Nectar', nameAr: 'نكتار جوافة', variants: TAMA, image: 'tama-guava-nectar.png' },
+  { slug: 'tama-strawberry-nectar', brand: 'tama', category: 'juices', nameEn: 'Strawberry Nectar', nameAr: 'نكتار فراولة', variants: TAMA, image: 'tama-strawberry-nectar.png' },
+  { slug: 'tama-peach-nectar', brand: 'tama', category: 'juices', nameEn: 'Peach Nectar', nameAr: 'نكتار خوخ', variants: TAMA, image: 'tama-peach-nectar.png' },
+  { slug: 'tama-apple-nectar', brand: 'tama', category: 'juices', nameEn: 'Apple Nectar', nameAr: 'نكتار تفاح', variants: TAMA, image: 'tama-apple-nectar.png' },
   { slug: 'tama-cocktail-nectar', brand: 'tama', category: 'juices', nameEn: 'Cocktail Nectar', nameAr: 'نكتار كوكتيل', variants: TAMA },
   { slug: 'tama-cranberry-nectar', brand: 'tama', category: 'juices', nameEn: 'Cranberry Nectar', nameAr: 'نكتار توت بري', variants: TAMA },
-  { slug: 'tama-orange-nectar', brand: 'tama', category: 'juices', nameEn: 'Orange Nectar', nameAr: 'نكتار برتقال', variants: TAMA },
-  { slug: 'tama-berry-nectar', brand: 'tama', category: 'juices', nameEn: 'Berry Nectar', nameAr: 'نكتار توت', variants: TAMA },
+  { slug: 'tama-orange-nectar', brand: 'tama', category: 'juices', nameEn: 'Orange Nectar', nameAr: 'نكتار برتقال', variants: TAMA, image: 'tama-orange-nectar.png' },
+  { slug: 'tama-berry-nectar', brand: 'tama', category: 'juices', nameEn: 'Berry Nectar', nameAr: 'نكتار توت', variants: TAMA, image: 'tama-berry-nectar.png' },
 
   // Tastino lines — Freshness syrups
-  { slug: 'freshness-vanilla-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Vanilla Syrup', nameAr: 'شراب الفانيليا فريشنس', variants: SYRUP, image: 'freshness-vanilla-syrup-800ml.png' },
-  { slug: 'freshness-caramel-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Caramel Syrup', nameAr: 'شراب الكراميل فريشنس', variants: SYRUP, image: 'freshness-caramel-syrup-pump-800ml.png' },
-  { slug: 'freshness-passion-fruit-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Passion Fruit Syrup', nameAr: 'شراب فاكهة الباشن فريشنس', variants: SYRUP, image: 'freshness-passion-fruit-syrup-800ml.png' },
+  { slug: 'freshness-vanilla-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Vanilla Syrup', nameAr: 'شراب الفانيليا فريشنس', variants: SYRUP, image: 'freshness-vanilla-syrup.png' },
+  { slug: 'freshness-caramel-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Caramel Syrup', nameAr: 'شراب الكراميل فريشنس', variants: SYRUP, image: 'freshness-caramel-syrup.png' },
+  { slug: 'freshness-passion-fruit-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Passion Fruit Syrup', nameAr: 'شراب فاكهة الباشن فريشنس', variants: SYRUP, image: 'freshness-passion-fruit-syrup.png' },
   { slug: 'freshness-hazelnut-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Hazelnut Syrup', nameAr: 'شراب البندق فريشنس', variants: SYRUP },
   { slug: 'freshness-berry-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Berry Syrup', nameAr: 'شراب التوت فريشنس', variants: SYRUP },
   { slug: 'freshness-mojito-syrup', line: 'FRESHNESS', category: 'syrups', nameEn: 'Freshness Mojito Syrup', nameAr: 'شراب الموهيتو فريشنس', variants: SYRUP },
