@@ -19,6 +19,10 @@ async function withChange<T>(apply: () => Promise<unknown>, restore: () => Promi
 }
 
 describe('getHomeData: hero (US-003.1)', () => {
+  it('links a slide to its brand page, and to the product list when the slide is not a brand', async () => {
+    const { slides } = await getHomeData('en');
+    expect(slides.map((s) => s.href)).toEqual(['/brands/tama', '/brands/liora', '/products']);
+  });
   it('cycles exactly the published slides in sortOrder', async () => {
     const { slides } = await getHomeData('en');
     expect(slides.map((s) => s.brand)).toEqual(['TAMA', 'Liora', 'Freshness']);
