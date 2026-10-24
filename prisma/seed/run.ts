@@ -5,6 +5,7 @@ import { findBanned, missingForPublish } from '@/lib/content/rules';
 import { storeImage } from '@/lib/media/store';
 import { BRANDS, CATEGORIES, HERO_SLIDES, PRODUCTS, describe } from './catalogue';
 import { loadOfficialCopy, TAGLINE } from './copy';
+import { LEGAL_BLOCKS, LEGAL_VERSION_DATE } from './legal';
 
 const ROOT = path.resolve(__dirname, '../..');
 export const CUTOUTS = path.join(ROOT, '.claude/source/cutouts');
@@ -142,6 +143,16 @@ export async function runSeed(db: PrismaClient, opts: SeedOptions = {}): Promise
     report.blocks++;
   }
 
+  // Draft legal pages: created once and never overwritten once an admin has edited them. They stay marked as
+  // drafts (no `legal.<page>.approved` setting) until the client's legal adviser approves them.
+  for (const l of LEGAL_BLOCKS) {
+    const existing = await db.pageBlock.findUnique({ where: { key: l.key } });
+    if (existing?.editedByAdmin) continue;
+    const { key, ...data } = l;
+    await db.pageBlock.upsert({ where: { key }, create: { key, ...data, status: 'PUBLISHED' }, update: data });
+    report.blocks++;
+  }
+
   const settings: { key: string; value: Prisma.InputJsonValue; isPrivate?: boolean }[] = [
     { key: 'contact.email', value: 'info@tastinofoods.com' },
     { key: 'contact.phone', value: '+201100111887' },
@@ -149,6 +160,8 @@ export async function runSeed(db: PrismaClient, opts: SeedOptions = {}): Promise
     { key: 'contact.addressEn', value: 'Industrial City, 10th of Ramadan, C5, Building No. 21' },
     { key: 'contact.addressAr', value: 'المنطقة الصناعية، العاشر من رمضان، C5، مبنى رقم 21' },
     { key: 'social', value: [] },
+    { key: 'legal.privacy.updated', value: LEGAL_VERSION_DATE },
+    { key: 'legal.terms.updated', value: LEGAL_VERSION_DATE },
     { key: 'leads.recipients', value: ['info@tastinofoods.com'], isPrivate: true },
   ];
   for (const s of settings) {
