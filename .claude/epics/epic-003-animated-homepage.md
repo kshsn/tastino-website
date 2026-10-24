@@ -18,7 +18,7 @@ Build the homepage exactly as the approved mockup (`.claude/design/mockup/index.
 
 #### Acceptance Criteria
 - [ ] Given the homepage loads, when the first screen renders, then it shows the headline, lead text, a primary CTA ("Explore our brands"), a secondary CTA ("Request catalogue"), as in the approved mockup (the header keeps "Become a Distributor"), and a bobbing packshot, all in the current language.
-- [ ] Given the hero is visible, when 4 seconds pass without interaction, then the showcase advances to the next brand, the packshot swaps with the in/out animation, and the blob, highlight and chip colors change to that brand's accent.
+- [ ] Given the hero is visible, when 8 seconds pass without interaction (the old website's pace; it was 4 seconds in the first version), then the showcase advances to the next brand, the packshot swaps with the in/out animation, and the blob, highlight and chip colors change to that brand's accent.
 - [ ] Given the dots control, when a dot is activated by click or keyboard, then the showcase jumps to that brand and the auto-cycle restarts its timer.
 - [ ] Given hero content is managed as HeroSlide records, when 3 published slides exist, then exactly those 3 are cycled in their `sortOrder`.
 
