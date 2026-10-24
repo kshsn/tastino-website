@@ -1,10 +1,12 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { site } from '@/config/site';
 import { Link } from '@/i18n/navigation';
+import { getContactInfo } from '@/lib/content/contact';
 import { Logo } from './Logo';
 
 export async function SiteFooter() {
-  const t = await getTranslations();
+  const locale = await getLocale();
+  const [t, contact] = await Promise.all([getTranslations(), getContactInfo(locale)]);
   const year = new Date().getFullYear();
   return (
     <footer className="mt-10 text-sm text-muted">
@@ -34,19 +36,25 @@ export async function SiteFooter() {
           <div>
             <h2 className="mb-3 text-sm font-bold text-ink">{t('footer.contact')}</h2>
             <ul className="space-y-2">
-              <li>
-                <a href={`mailto:${site.email}`} className="hover:text-ink">{site.email}</a>
-              </li>
-              <li>
-                <span className="sr-only">{t('footer.phone')}: </span>
-                <a href={`tel:${site.phoneE164}`} dir="ltr" className="hover:text-ink">{site.phoneDisplay}</a>
-              </li>
-              <li>
-                <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
-                  {t('footer.whatsapp')} <bdi dir="ltr">{site.phoneDisplay}</bdi>
-                </a>
-              </li>
-              <li><address className="not-italic">{t('footer.address')}</address></li>
+              {contact.email && (
+                <li>
+                  <a href={`mailto:${contact.email}`} className="hover:text-ink">{contact.email}</a>
+                </li>
+              )}
+              {contact.phoneDisplay && (
+                <li>
+                  <span className="sr-only">{t('footer.phone')}: </span>
+                  {contact.tel ? <a href={contact.tel} dir="ltr" className="hover:text-ink">{contact.phoneDisplay}</a> : <bdi dir="ltr">{contact.phoneDisplay}</bdi>}
+                </li>
+              )}
+              {contact.whatsapp && (
+                <li>
+                  <a href={contact.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
+                    {t('footer.whatsapp')} <bdi dir="ltr">{contact.whatsappDisplay}</bdi>
+                  </a>
+                </li>
+              )}
+              {contact.address && <li><address className="not-italic">{contact.address}</address></li>}
             </ul>
             {site.social.length > 0 && (
               <ul className="mt-4 flex gap-3">

@@ -6,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
+import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { env } from '@/env';
 import { dirOf, routing } from '@/i18n/routing';
 
@@ -18,7 +19,7 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakart
 const cairo = Cairo({ subsets: ['arabic'], variable: '--font-cairo', display: 'swap' });
 
 // Only these message groups are used by client components, so only they are sent to the browser.
-const CLIENT_MESSAGES = ['header', 'nav', 'error', 'notFound'] as const;
+const CLIENT_MESSAGES = ['header', 'nav', 'error', 'notFound', 'leads'] as const;
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.SITE_URL),
@@ -48,6 +49,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <SiteHeader />
           <main id="main">{children}</main>
           <SiteFooter />
+          <WhatsAppFloat />
         </NextIntlClientProvider>
       </body>
     </html>

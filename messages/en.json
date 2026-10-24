@@ -371,5 +371,114 @@
       "button": "Become a distributor",
       "products": "See products"
     }
+  },
+  "leads": {
+    "crumb": "Become a Distributor",
+    "eyebrow": "Partnership",
+    "title": "Let's Build a Successful Partnership",
+    "intro": "Whether you are a distribution company looking to introduce new brands to your portfolio, a wholesaler seeking to expand your range, a supermarket chain exploring new opportunities, or a business in the hotel, restaurant, café or catering sectors, the Tastino Foods sales team would be delighted to connect with you.",
+    "who": [
+      "Distribution companies",
+      "Wholesalers",
+      "Supermarket chains",
+      "HORECA & catering"
+    ],
+    "reachTitle": "Contact details",
+    "salesWhatsapp": "Sales & WhatsApp",
+    "email": "Email",
+    "factory": "Factory",
+    "openMap": "Open in Maps",
+    "reasonLabel": "What can we help you with?",
+    "reasons": {
+      "distributor": "Become a distributor",
+      "catalogue": "Request catalogue",
+      "product": "Product inquiry",
+      "other": "Other"
+    },
+    "fields": {
+      "name": "Full name",
+      "company": "Company name",
+      "email": "Email",
+      "phone": "Phone / WhatsApp",
+      "phoneCode": "Country code",
+      "country": "Country",
+      "selectCountry": "Select country",
+      "companyType": "Company type",
+      "brands": "Brands you're interested in",
+      "product": "Product",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your business and the territory you cover.",
+      "required": "required"
+    },
+    "companyTypes": {
+      "distribution": "Distribution company",
+      "wholesaler": "Wholesaler",
+      "supermarket": "Supermarket chain",
+      "horeca": "Hotel / restaurant / café",
+      "catering": "Catering",
+      "other": "Other"
+    },
+    "brandNames": {
+      "lora": "Lora",
+      "liora": "Liora",
+      "andiamo": "Andiamo",
+      "tama": "TAMA",
+      "tastino": "Tastino lines"
+    },
+    "errors": {
+      "name": {
+        "required": "Please enter your name.",
+        "tooLong": "That name is too long."
+      },
+      "company": {
+        "required": "Please enter your company name.",
+        "tooLong": "That name is too long."
+      },
+      "email": {
+        "required": "Please enter your email.",
+        "email": "Please enter a valid email."
+      },
+      "phone": {
+        "phone": "That phone number doesn't look right."
+      },
+      "country": {
+        "required": "Please choose a country.",
+        "invalid": "Please choose a country."
+      },
+      "message": {
+        "required": "Please write a short message.",
+        "tooLong": "Please keep your message under 2000 characters."
+      },
+      "product": {
+        "tooLong": "That product name is too long."
+      },
+      "consent": {
+        "consent": "Consent is required to send your request."
+      },
+      "generic": "Please check this field."
+    },
+    "consent": "I agree that Tastino Foods Inc may use my details to respond to my request, store them in the Tastino database and send them to info@tastinofoods.com, in line with the <privacy>Privacy Policy</privacy> and Egypt's Personal Data Protection Law No. 151 of 2020.",
+    "banners": {
+      "network": "We couldn't send your request. Check your connection and try again, or message us on WhatsApp.",
+      "rateLimited": "Too many requests. Please try again in a few minutes, or message us on WhatsApp.",
+      "unavailable": "We couldn't save your request right now. Please try again, or message us on WhatsApp.",
+      "fixErrors": "Please check the highlighted fields."
+    },
+    "submit": "Send request",
+    "sending": "Sending…",
+    "success": {
+      "title": "Thank you!",
+      "body": "Your request has reached our sales team.",
+      "reply": "We'll reply {time}, and we've sent a confirmation to your email.",
+      "replyNoTime": "We'll reply as soon as we can, and we've sent a confirmation to your email.",
+      "reference": "Reference",
+      "whatsapp": "Need it faster? WhatsApp us"
+    },
+    "wa": {
+      "label": "Chat with us on WhatsApp",
+      "text": "Hello Tastino Foods, I'd like to know more about your products.",
+      "textFor": "Hello Tastino Foods, I'd like to know more about {name}.",
+      "success": "Hello Tastino Foods, my request reference is {reference}."
+    }
   }
 }
