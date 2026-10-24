@@ -4,6 +4,7 @@ import { FIRST_SLIDE_MS, OTHER_SLIDE_MS, slideDuration, swipeStep, wrapIndex } f
 describe('slideDuration', () => {
   it('keeps the video slide 15 seconds, like the old website', () => expect(slideDuration(0)).toBe(FIRST_SLIDE_MS));
   it('keeps every other slide 8 seconds', () => expect([slideDuration(1), slideDuration(2), slideDuration(3)]).toEqual([OTHER_SLIDE_MS, OTHER_SLIDE_MS, OTHER_SLIDE_MS]));
+  it('gives every slide 8 seconds when the first slide is not the video', () => expect(slideDuration(0, false)).toBe(OTHER_SLIDE_MS));
   it('uses the documented values', () => expect([FIRST_SLIDE_MS, OTHER_SLIDE_MS]).toEqual([15000, 8000]));
 });
 
