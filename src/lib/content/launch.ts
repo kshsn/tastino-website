@@ -34,5 +34,11 @@ export async function getLaunchBlockers(): Promise<LaunchBlocker[]> {
       blockers.push({ id: `${key}-unapproved`, message: `${label} is still a draft: the client's legal approval is not recorded.` });
     }
   }
+
+  // The consent wording on the lead forms (Arabic and English) needs the same sign-off (US-006.8).
+  const consent = await db.setting.findUnique({ where: { key: 'legal.consent.approved' } });
+  if (typeof consent?.value !== 'string' || consent.value.trim() === '') {
+    blockers.push({ id: 'consent-unapproved', message: "The consent wording on the lead forms is still a draft: the client's legal approval is not recorded." });
+  }
   return blockers;
 }
