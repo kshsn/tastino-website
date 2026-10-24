@@ -15,42 +15,40 @@ const VIDEO_SRC_SMALL = '/hero/tomato-vine-sm.mp4';
 const POSTER_SRC = '/hero/tomato-vine-poster.jpg';
 
 /**
- * The homepage hero: the old website's tomato-vine video first, then the published product slides, and the
- * catalogue facts in a band underneath. The poster photo is the first thing painted, so it is preloaded.
+ * The homepage hero is only the old website's tomato-vine video, with the catalogue facts in a band under it;
+ * the published product slides follow below as their own slider. The poster photo is the first thing painted, so it is preloaded.
  */
 export async function Hero({ data, locale }: HeroProps) {
   const t = await getTranslations('home');
   preload(POSTER_SRC, { as: 'image', fetchPriority: 'high' });
 
-  const slides: HeroSlideModel[] = [
-    {
-      kind: 'video',
-      id: 'video',
-      src: VIDEO_SRC,
-      srcSmall: VIDEO_SRC_SMALL,
-      poster: POSTER_SRC,
-      eyebrow: t('eyebrow'),
-      titleA: t('titleA'),
-      titleB: t('titleB'),
-      lead: t('lead'),
-      primary: { href: '/brands', label: t('explore') },
-      secondary: { href: '/distributors?reason=catalogue', label: t('catalogue') },
-    },
-    ...data.slides.map(
-      (s): HeroSlideModel => ({
-        kind: 'product',
-        id: s.id,
-        accent: s.accent,
-        brand: s.brand,
-        label: s.label,
-        picture: s.picture,
-        cta: { href: s.href, label: t('hero.explore', { brand: s.brand }) },
-      }),
-    ),
-  ];
+  const videoSlide: HeroSlideModel = {
+    kind: 'video',
+    id: 'video',
+    src: VIDEO_SRC,
+    srcSmall: VIDEO_SRC_SMALL,
+    poster: POSTER_SRC,
+    eyebrow: t('eyebrow'),
+    titleA: t('titleA'),
+    titleB: t('titleB'),
+    lead: t('lead'),
+    primary: { href: '/brands', label: t('explore') },
+    secondary: { href: '/distributors?reason=catalogue', label: t('catalogue') },
+  };
+  const productSlides: HeroSlideModel[] = data.slides.map(
+    (s): HeroSlideModel => ({
+      kind: 'product',
+      id: s.id,
+      accent: s.accent,
+      brand: s.brand,
+      label: s.label,
+      picture: s.picture,
+      cta: { href: s.href, label: t('hero.explore', { brand: s.brand }) },
+    }),
+  );
 
   const labels: HeroLabels = {
-    region: t('hero.group'),
+    region: t('hero.videoRegion'),
     prev: t('hero.prev'),
     next: t('hero.next'),
     pause: t('hero.pause'),
@@ -61,10 +59,14 @@ export async function Hero({ data, locale }: HeroProps) {
     madeInNote: t('chip.note'),
   };
 
+  const rtl = locale === 'ar';
   return (
-    <header data-hero>
-      <HeroSlider slides={slides} labels={labels} rtl={locale === 'ar'} />
-      <HeroStats stats={data.stats} locale={locale} />
-    </header>
+    <>
+      <header data-hero>
+        <HeroSlider slides={[videoSlide]} labels={labels} rtl={rtl} />
+        <HeroStats stats={data.stats} locale={locale} />
+      </header>
+      {productSlides.length > 0 && <HeroSlider slides={productSlides} labels={{ ...labels, region: t('hero.group') }} rtl={rtl} variant="products" />}
+    </>
   );
 }
