@@ -10,23 +10,25 @@ const ITEMS = [
 export async function ValueStrip() {
   const t = await getTranslations('home.features');
   return (
-    <div className="wrap features-wrap">
-      <h2 className="sr-only">{t('heading')}</h2>
-      <ul className="features">
-        {ITEMS.map((item) => (
-          <li key={item.key} className="feat" data-reveal>
-            <div className="ic" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                {item.paths.map((d) => (
-                  <path key={d} d={d} />
-                ))}
-              </svg>
-            </div>
-            <h3>{t(`${item.key}.title`)}</h3>
-            <p>{t(`${item.key}.text`)}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="features-band">
+      <div className="wrap features-wrap">
+        <h2 className="sr-only">{t('heading')}</h2>
+        <ul className="features">
+          {ITEMS.map((item) => (
+            <li key={item.key} className="feat" data-reveal>
+              <div className="ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  {item.paths.map((d) => (
+                    <path key={d} d={d} />
+                  ))}
+                </svg>
+              </div>
+              <h3>{t(`${item.key}.title`)}</h3>
+              <p>{t(`${item.key}.text`)}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
