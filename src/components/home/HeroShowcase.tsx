@@ -7,7 +7,8 @@ import { accentVars } from '@/lib/color';
 import type { HomeSlide } from '@/lib/content/home';
 import type { PictureData } from '@/lib/media/types';
 
-const CYCLE_MS = 4000;
+// Same pace as the old website's slider (8 seconds per slide), which is much calmer than the first 4-second version.
+const CYCLE_MS = 8000;
 const OUT_MS = 450;
 const IN_MS = 700;
 
@@ -21,7 +22,7 @@ interface HeroShowcaseProps {
 }
 
 /**
- * The animated product stage: one packshot bobs while brand color, chip and blob change every 4 seconds.
+ * The animated product stage: one packshot bobs while brand color, chip and blob change every 8 seconds.
  * Auto-cycle pauses on hover and focus and is off for reduced motion. Dots and keyboard jump to a slide
  * and restart the timer; rapid input can never leave two packshots or two timers running.
  */
