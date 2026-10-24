@@ -42,8 +42,10 @@
 .home .img-ph { display: grid; place-items: center; width: 100%; min-height: 80px; color: var(--color-muted); font-size: 12px; font-weight: 700; text-align: center; background: rgba(255, 255, 255, .6); border-radius: 18px; border: 2px dashed var(--color-line); padding: 12px; }
 
 /* ───────── value strip ───────── */
+/* white band under the numbers: the cards sit inside it, nothing overlaps the numbers above */
+.home .features-band { background: #fff; padding: 36px 0 64px; border-bottom: 1px solid var(--color-line); }
 .home .features-wrap { position: relative; z-index: 2; }
-.home .features { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-radius: var(--radius); box-shadow: 0 30px 60px -40px rgba(20, 33, 61, .4); margin-top: -30px; position: relative; }
+.home .features { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; border-radius: var(--radius); border: 1px solid var(--color-line); margin-top: 0; position: relative; }
 .home .feat { padding: 30px 26px; border-inline-end: 1px solid var(--color-line); }
 .home .feat:last-child { border: 0; }
 .home .feat .ic { width: 52px; height: 52px; border-radius: 16px; background: #eaf3ff; display: grid; place-items: center; margin-bottom: 16px; transition: transform .4s; }
