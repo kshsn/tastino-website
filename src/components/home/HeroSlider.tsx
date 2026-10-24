@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type Poin
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { slideDuration, swipeStep, wrapIndex } from '@/lib/hero';
 import { HeroControls } from './HeroControls';
-import { HeroProductSlide } from './HeroProductSlide';
 import { HeroVideoSlide } from './HeroVideoSlide';
 import type { HeroLabels, HeroSlideModel } from './hero-types';
 
@@ -12,19 +11,17 @@ interface HeroSliderProps {
   slides: HeroSlideModel[];
   labels: HeroLabels;
   rtl: boolean;
-  /** 'hero' is the video at the top of the page; 'products' is the product slides further down. */
-  variant?: 'hero' | 'products';
 }
 
 /**
- * The full-width homepage hero: the looping video first (15 s), then the product slides (8 s each).
+ * The full-width homepage hero: the looping video (a slide list, so more slides could be added later).
  * It changes by itself, and stops while the visitor pauses it, while focus is inside it, and always under reduced
  * motion. Arrows, dots, keyboard arrows and swipes move it and restart the timer.
  */
-export function HeroSlider({ slides, labels, rtl, variant = 'hero' }: HeroSliderProps) {
+export function HeroSlider({ slides, labels, rtl }: HeroSliderProps) {
   const count = slides.length;
-  const hasVideo = slides.some((s) => s.kind === 'video');
-  const firstIsVideo = slides[0]?.kind === 'video';
+  const hasVideo = count > 0;
+  const firstIsVideo = hasVideo;
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [userPaused, setUserPaused] = useState(false);
@@ -73,7 +70,7 @@ export function HeroSlider({ slides, labels, rtl, variant = 'hero' }: HeroSlider
 
   return (
     <section
-      className={`hs hs-${variant}`}
+      className="hs"
       aria-roledescription="carousel"
       aria-label={labels.region}
       onKeyDown={onKeyDown}
@@ -93,11 +90,7 @@ export function HeroSlider({ slides, labels, rtl, variant = 'hero' }: HeroSlider
             aria-hidden={k === index ? undefined : true}
             inert={k === index ? undefined : true}
           >
-            {slide.kind === 'video' ? (
-              <HeroVideoSlide slide={slide} active={k === index} playing={!reduced && !userPaused} />
-            ) : (
-              <HeroProductSlide slide={slide} labels={labels} />
-            )}
+            <HeroVideoSlide slide={slide} active={k === index} playing={!reduced && !userPaused} />
           </div>
         ))}
       </div>
