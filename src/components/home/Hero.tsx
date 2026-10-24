@@ -16,7 +16,7 @@ const POSTER_SRC = '/hero/tomato-vine-poster.jpg';
 
 /**
  * The homepage hero is only the old website's tomato-vine video, with the catalogue facts in a band under it;
- * the published product slides follow below as their own slider. The poster photo is the first thing painted, so it is preloaded.
+ * the product slides were taken out. The poster photo is the first thing painted, so it is preloaded.
  */
 export async function Hero({ data, locale }: HeroProps) {
   const t = await getTranslations('home');
@@ -35,18 +35,6 @@ export async function Hero({ data, locale }: HeroProps) {
     primary: { href: '/brands', label: t('explore') },
     secondary: { href: '/distributors?reason=catalogue', label: t('catalogue') },
   };
-  const productSlides: HeroSlideModel[] = data.slides.map(
-    (s): HeroSlideModel => ({
-      kind: 'product',
-      id: s.id,
-      accent: s.accent,
-      brand: s.brand,
-      label: s.label,
-      picture: s.picture,
-      cta: { href: s.href, label: t('hero.explore', { brand: s.brand }) },
-    }),
-  );
-
   const labels: HeroLabels = {
     region: t('hero.videoRegion'),
     prev: t('hero.prev'),
@@ -54,19 +42,13 @@ export async function Hero({ data, locale }: HeroProps) {
     pause: t('hero.pause'),
     play: t('hero.play'),
     slideOf: t('hero.slideOf', { n: '{n}', total: '{total}' }),
-    placeholder: t('imageSoon'),
-    madeIn: t('chip.title'),
-    madeInNote: t('chip.note'),
   };
 
   const rtl = locale === 'ar';
   return (
-    <>
-      <header data-hero>
+    <header data-hero>
         <HeroSlider slides={[videoSlide]} labels={labels} rtl={rtl} />
         <HeroStats stats={data.stats} locale={locale} />
-      </header>
-      {productSlides.length > 0 && <HeroSlider slides={productSlides} labels={{ ...labels, region: t('hero.group') }} rtl={rtl} variant="products" />}
-    </>
+    </header>
   );
 }
