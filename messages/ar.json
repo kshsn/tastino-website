@@ -117,7 +117,8 @@
       "next": "الشريحة التالية",
       "pause": "إيقاف العرض مؤقتاً",
       "play": "تشغيل العرض",
-      "slideOf": "الشريحة {n} من {total}"
+      "slideOf": "الشريحة {n} من {total}",
+      "videoRegion": "فيديو تستينو فودز"
     },
     "features": {
       "safety": {
