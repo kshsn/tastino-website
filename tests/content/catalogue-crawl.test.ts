@@ -78,3 +78,33 @@ describe('catalogue content crawl (US-004.6)', () => {
     expect(lora.every((t) => t.includes('400g') && t.includes('650g'))).toBe(true);
   });
 });
+
+// US-005.1 to US-005.5: the company and legal pages in both languages.
+describe('company pages content crawl (Epic 5)', () => {
+  const company: Page[] = [];
+  beforeAll(async () => {
+    for (const locale of LOCALES) for (const p of ['about', 'quality', 'innovation', 'privacy', 'terms']) company.push(await get(`/${locale}/${p}`));
+  }, 120_000);
+
+  it('answers 200 on all ten pages', () => {
+    expect(company.filter((p) => p.status !== 200).map((p) => `${p.url} -> ${p.status}`)).toEqual([]);
+  });
+  it('contains no banned spelling or borrowed boilerplate', () => {
+    expect(company.flatMap((p) => bannedHits(visibleText(p.html)).map((h) => `${p.url}: ${h}`))).toEqual([]);
+  });
+  it('names no certification on the quality pages (no certificate exists)', () => {
+    const quality = company.filter((p) => p.url.endsWith('/quality'));
+    expect(quality.flatMap((p) => (visibleText(p.html).match(/(ISO|HACCP|halal|BRC|FSSC)|حلال/gi) ?? []).map((h) => `${p.url}: ${h}`))).toEqual([]);
+  });
+  it('shows the draft notice on both legal pages until approval is recorded', () => {
+    const legal = company.filter((p) => /\/(privacy|terms)$/.test(p.url));
+    expect(legal.every((p) => p.html.includes('role="note"'))).toBe(true);
+  });
+  it('links the footer to Terms and Privacy on every page', () => {
+    expect(company.every((p) => p.html.includes('/terms') && p.html.includes('/privacy'))).toBe(true);
+  });
+  it('links the About page to the distributor page', () => {
+    const about = company.filter((p) => p.url.endsWith('/about'));
+    expect(about.every((p) => p.html.includes('/distributors'))).toBe(true);
+  });
+});
