@@ -159,9 +159,9 @@ describe('getHomeData: product strip, fan and shelf (US-003.5 / US-003.6)', () =
   it('has a product strip of at least four items', async () => {
     expect((await getHomeData('en')).marquee.length).toBeGreaterThanOrEqual(4);
   });
-  it('never puts a mislabelled (Liora-labelled Lora) jam packshot in the strip', async () => {
+  it('never puts the still mislabelled (Liora-labelled) strawberry jam packshot in the strip', async () => {
     const slugs = (await getHomeData('en')).marquee.map((m) => m.slug);
-    expect(slugs.filter((s) => s.startsWith('lora-'))).toEqual([]);
+    expect(slugs).not.toContain('lora-strawberry-jam');
   });
   it('gives every strip item a picture', async () => {
     expect((await getHomeData('en')).marquee.every((m) => m.picture !== null)).toBe(true);
