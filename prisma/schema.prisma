@@ -252,6 +252,8 @@ model Lead {
   archived           Boolean     @default(false)
   archivedAt         DateTime?
   emailStatus        EmailStatus @default(PENDING)
+  /** The separate confirmation email to the visitor. Never sent twice once SENT. */
+  autoReplyStatus    EmailStatus @default(PENDING)
   idempotencyKey     String?     @unique
   notes              LeadNote[]
   createdAt          DateTime    @default(now())
