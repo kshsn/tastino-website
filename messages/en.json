@@ -117,7 +117,8 @@
       "next": "Next slide",
       "pause": "Pause slideshow",
       "play": "Play slideshow",
-      "slideOf": "Slide {n} of {total}"
+      "slideOf": "Slide {n} of {total}",
+      "videoRegion": "Tastino Foods video"
     },
     "features": {
       "safety": {
