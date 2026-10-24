@@ -4,8 +4,8 @@
 export const FIRST_SLIDE_MS = 15_000;
 export const OTHER_SLIDE_MS = 8_000;
 
-/** How long a slide stays before the slider moves on by itself. */
-export const slideDuration = (index: number): number => (index === 0 ? FIRST_SLIDE_MS : OTHER_SLIDE_MS);
+/** How long a slide stays before the slider moves on by itself (the 15 s only applies to a first slide that is the video). */
+export const slideDuration = (index: number, firstIsVideo = true): number => (index === 0 && firstIsVideo ? FIRST_SLIDE_MS : OTHER_SLIDE_MS);
 
 /** Keeps an index inside 0..count-1, wrapping both ways. */
 export function wrapIndex(index: number, count: number): number {
