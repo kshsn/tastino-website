@@ -128,6 +128,12 @@
 .home .hs-dots .fill.run { animation: hs-progress var(--hs-dur) linear forwards; }
 @keyframes hs-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
+/* ───────── product slides, below the video hero ───────── */
+.home section.hs-products { background: #fffbf5; }
+.home .hs-products .hs-viewport { height: clamp(500px, 74svh, 660px); }
+.home .hs-products .hs-product-grid { padding-bottom: 78px; }
+@media (max-width: 960px) { .home .hs-products .hs-viewport { height: clamp(560px, 82svh, 700px); } }
+
 /* ───────── stats band ───────── */
 .home .hs-stats { background: #fff; border-bottom: 1px solid var(--color-line); }
 .home .hs-stats ul { display: grid; grid-template-columns: repeat(3, 1fr); list-style: none; margin: 0; padding: 0; }
