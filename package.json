@@ -17,7 +17,8 @@
     "db:migrate": "prisma migrate deploy",
     "db:seed": "tsx --env-file=.env prisma/seed.ts",
     "test:integration": "vitest run -c vitest.integration.config.ts",
-    "test:content": "vitest run -c vitest.content.config.ts"
+    "test:content": "vitest run -c vitest.content.config.ts",
+    "check:launch": "tsx --env-file=.env scripts/check-launch.ts"
   },
   "dependencies": {
     "@prisma/client": "6.19.3",

@@ -52,8 +52,8 @@ describe('runSeed (US-002.3 / US-002.4 / US-002.7)', () => {
     expect(findBanned(text)).toEqual([]);
   });
 
-  it('seeds the six official copy blocks plus the tagline, all published', async () => {
-    expect(await db.pageBlock.count({ where: { status: 'PUBLISHED' } })).toBe(7);
+  it('seeds the six official copy blocks, the tagline and the two draft legal pages, all published', async () => {
+    expect(await db.pageBlock.count({ where: { status: 'PUBLISHED' } })).toBe(9);
   });
 
   it('stores the English tagline exactly', async () => {
@@ -62,8 +62,14 @@ describe('runSeed (US-002.3 / US-002.4 / US-002.7)', () => {
 
   it('never overwrites a block an admin has edited', async () => {
     await db.pageBlock.update({ where: { key: 'about' }, data: { bodyEn: 'Admin text', editedByAdmin: true } });
-    await runSeed(db);
-    expect((await db.pageBlock.findUniqueOrThrow({ where: { key: 'about' } })).bodyEn).toBe('Admin text');
+    try {
+      await runSeed(db, { skipMedia: true });
+      expect((await db.pageBlock.findUniqueOrThrow({ where: { key: 'about' } })).bodyEn).toBe('Admin text');
+    } finally {
+      // Put the official copy back so other test files (which run in any order) see the real About text.
+      await db.pageBlock.update({ where: { key: 'about' }, data: { editedByAdmin: false } });
+      await runSeed(db, { skipMedia: true });
+    }
   });
 
   it('keeps SMTP-style settings private', async () => {

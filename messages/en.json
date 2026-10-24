@@ -296,5 +296,80 @@
       },
       "cta": "Become a distributor"
     }
+  },
+  "company": {
+    "crumbs": {
+      "home": "Home",
+      "about": "About",
+      "quality": "Quality",
+      "innovation": "Innovation",
+      "privacy": "Privacy policy",
+      "terms": "Terms of use"
+    },
+    "nav": "Breadcrumb",
+    "imageSoon": "Image coming soon",
+    "tabs": {
+      "label": "Company pages",
+      "story": "Our story",
+      "safety": "Food safety",
+      "innovation": "Innovation"
+    },
+    "about": {
+      "eyebrow": "Tastino Foods Inc.",
+      "storyEyebrow": "Our story",
+      "storyTitle": "A modern facility, and a team that keeps growing",
+      "valuesLabel": "What guides us",
+      "v1": {
+        "title": "Careful ingredients",
+        "text": "Our responsibility starts with ingredient selection."
+      },
+      "v2": {
+        "title": "Advanced machinery",
+        "text": "Consistent quality and precision in manufacturing."
+      },
+      "v3": {
+        "title": "Trained people",
+        "text": "Ongoing training and professional development."
+      },
+      "findTitle": "Find us",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "moreEyebrow": "Keep reading",
+      "toQuality": "How we keep food safe",
+      "toInnovation": "How we develop our products"
+    },
+    "quality": {
+      "eyebrow": "Quality & safety",
+      "timelineLabel": "Food safety from start to finish",
+      "s1": {
+        "title": "Before manufacturing",
+        "text": "Preparing the manufacturing environment and ingredients."
+      },
+      "s2": {
+        "title": "During production",
+        "text": "Processing and filling under rigorous process monitoring."
+      },
+      "s3": {
+        "title": "After completion",
+        "text": "Packaging and delivering the finished product."
+      }
+    },
+    "innovation": {
+      "eyebrow": "Research & development",
+      "brandEyebrow": "Our brands",
+      "toProducts": "See our products",
+      "toBrands": "Explore our brands"
+    },
+    "legal": {
+      "updated": "Last updated: {date}",
+      "draftTitle": "Draft text",
+      "draftBody": "This text is a draft and is waiting for approval by Tastino's legal adviser. It may change."
+    },
+    "cta": {
+      "title": "Want to carry Tastino products?",
+      "button": "Become a distributor",
+      "products": "See products"
+    }
   }
 }
