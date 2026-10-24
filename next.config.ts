@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     // The approved design merges contact into the distributors page (/analyze decision #4).
     return [
-      { source: '/:locale(en|ar)/contact', destination: '/:locale/distributors', permanent: true },
+      { source: '/:locale(en|ar)/contact', destination: '/:locale/distributors', statusCode: 301 },
     ];
   },
 };
