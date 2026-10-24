@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Breadcrumbs } from '@/components/catalogue/Breadcrumbs';
 import { Paragraphs } from '@/components/home/Paragraphs';
 import { AboutHero } from '@/components/company/AboutHero';
+import { AboutIntro } from '@/components/company/AboutIntro';
 import { CompanyCta } from '@/components/company/CompanyCta';
 import { CompanyTabs } from '@/components/company/CompanyTabs';
 import { ContactFacts } from '@/components/company/ContactFacts';
@@ -40,6 +41,7 @@ export default async function AboutPage({ params }: Props) {
         <Breadcrumbs items={[{ label: t('crumbs.home'), href: '/' }, { label: t('crumbs.about') }]} />
         <AboutHero first={tagline.first} second={tagline.second} intro={intro} collage={collage} />
         <CompanyTabs current="story" />
+        <AboutIntro />
 
         {about && (
           <section id="story">

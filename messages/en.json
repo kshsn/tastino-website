@@ -344,7 +344,12 @@
       "email": "Email",
       "moreEyebrow": "Keep reading",
       "toQuality": "How we keep food safe",
-      "toInnovation": "How we develop our products"
+      "toInnovation": "How we develop our products",
+      "intro": {
+        "title": "About Tastino Foods INC",
+        "p1": "Tastino Foods INC is a global food and beverage leader with a complementary portfolio of brands, including iconic products that generate more than $1 billion each in annual retail sales.",
+        "p2": "Our mission is to create more smiles with every sip and every bite. We do this by being the best possible partner, driving value through innovation and excellence."
+      }
     },
     "quality": {
       "eyebrow": "Quality & safety",
