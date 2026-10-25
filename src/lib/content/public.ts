@@ -69,7 +69,7 @@ export function getPageBlock(key: string) {
 }
 
 /** Keys that may ever be shown publicly; anything else (SMTP, recipients, API keys) stays server-side. */
-export const PUBLIC_SETTING_KEYS = ['contact.email', 'contact.phone', 'contact.whatsapp', 'contact.addressEn', 'contact.addressAr', 'social', 'leads.responseTimeEn', 'leads.responseTimeAr', 'legal.privacy.updated', 'legal.privacy.approved', 'legal.terms.updated', 'legal.terms.approved'] as const;
+export const PUBLIC_SETTING_KEYS = ['contact.email', 'contact.phone', 'contact.whatsapp', 'contact.addressEn', 'contact.addressAr', 'contact.mapLink', 'social', 'leads.responseTimeEn', 'leads.responseTimeAr', 'legal.privacy.updated', 'legal.privacy.approved', 'legal.terms.updated', 'legal.terms.approved'] as const;
 
 /** Public settings: allowlisted keys only, and never a row marked private. */
 export async function getPublicSettings(): Promise<Record<string, Prisma.JsonValue>> {
