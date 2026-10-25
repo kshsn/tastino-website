@@ -147,6 +147,27 @@
 .adm .pill.st-in_contact { background: #fff4e0; color: var(--amber); }
 .adm .pill.st-qualified { background: #e6f6ea; color: #21803d; }
 .adm .pill.st-closed { background: #eef0f3; color: #5b6475; }
+.adm-entries { list-style: none; margin: 0; padding: 0; }
+.adm-entries li { border-bottom: 1px solid var(--line); }
+.adm-entries li:last-child { border-bottom: 0; }
+.adm-entries summary { display: grid; grid-template-columns: 170px minmax(110px, 190px) minmax(150px, 220px) 1fr; gap: 12px; align-items: center; padding: 12px 6px; cursor: pointer; list-style: none; }
+.adm-entries summary::-webkit-details-marker { display: none; }
+.adm-entries summary:hover { background: #faf8f4; }
+.adm-entries .when { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+.adm-entries .who-line { font-weight: 700; overflow-wrap: anywhere; }
+.adm-entries .act { background: #eef0f3; border-radius: 8px; padding: 2px 8px; font-size: 12.5px; width: fit-content; }
+.adm-entries .what { color: var(--muted); font-size: 12.5px; overflow-wrap: anywhere; }
+.adm-entries .entry-body { padding: 4px 6px 16px; }
+.adm-diff { border-collapse: collapse; width: 100%; max-width: 760px; margin-top: 8px; }
+.adm-diff th, .adm-diff td { text-align: start; padding: 8px 10px; border: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+.adm-diff thead th { background: #f4f1ec; font-size: 12px; }
+.adm-diff .was { background: #fff6f6; }
+.adm-diff .now { background: #f2faf4; }
+.adm-facts-list { display: grid; gap: 8px; margin: 8px 0 0; }
+.adm-facts-list div { display: grid; grid-template-columns: 160px 1fr; gap: 10px; }
+.adm-facts-list dt { color: var(--muted); font-weight: 700; }
+.adm-facts-list dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 900px) { .adm-entries summary { grid-template-columns: 1fr; gap: 4px; } }
 .adm-two { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; align-items: start; }
 .adm-stack { display: grid; gap: 18px; }
 .adm-two h2 { font-size: 18px; font-weight: 800; margin-bottom: 6px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
