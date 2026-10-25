@@ -32,10 +32,10 @@ export default async function AdminHomePage() {
           </Link>
         )}
         {can(user.role, 'audit') && (
-          <div className="adm-card">
+          <Link className="adm-card" href="/admin/audit">
             <h2>Audit log</h2>
-            <p>Every sign-in and change is already being recorded; the viewer comes later.</p>
-          </div>
+            <p>Who signed in, what changed and who was refused, with before and after values. Entries cannot be edited.</p>
+          </Link>
         )}
       </div>
     </AdminShell>
