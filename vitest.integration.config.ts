@@ -26,6 +26,8 @@ export default defineConfig({
       DATABASE_URL: TEST_DATABASE_URL,
       MEDIA_DIR: 'tests/.media',
       MEDIA_URL_BASE: '/media',
+      // A fixed key for tests only (never used anywhere else).
+      ADMIN_ENCRYPTION_KEY: 'MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDE=',
     },
   },
 });
