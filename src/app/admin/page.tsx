@@ -26,10 +26,10 @@ export default async function AdminHomePage() {
           </div>
         )}
         {can(user.role, 'leads') && (
-          <div className="adm-card">
+          <Link className="adm-card" href="/admin/leads">
             <h2>Leads</h2>
-            <p>See and follow up distributor and contact requests. Coming in the next release.</p>
-          </div>
+            <p>See and follow up distributor, catalogue and product requests: status, assignee, notes, archive and CSV export.</p>
+          </Link>
         )}
         {can(user.role, 'audit') && (
           <div className="adm-card">

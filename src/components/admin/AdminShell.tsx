@@ -15,7 +15,8 @@ interface NavItem {
 // Only the areas the signed-in role may open are rendered at all (US-007.4).
 const NAV: NavItem[] = [
   { area: 'dashboard', label: 'Dashboard', href: '/admin' },
-  { area: 'leads', label: 'Leads', href: '/admin/leads', soon: true },
+  { area: 'leads', label: 'Leads', href: '/admin/leads' },
+  { area: 'retention', label: 'Retention', href: '/admin/leads/retention' },
   { area: 'content', label: 'Brands & products', href: '/admin/content', soon: true },
   { area: 'users', label: 'Users', href: '/admin/users' },
   { area: 'audit', label: 'Audit log', href: '/admin/audit', soon: true },
