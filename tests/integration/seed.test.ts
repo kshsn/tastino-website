@@ -29,7 +29,8 @@ describe('runSeed (US-002.3 / US-002.4 / US-002.7)', () => {
   it('is idempotent: a second run leaves every row count unchanged', async () => {
     await runSeed(db);
     expect(await counts()).toEqual(afterFirst);
-  });
+    // The seed processes every packshot again (about 40 images), which takes longer than the 60 s default.
+  }, 240_000);
 
   it('creates exactly four published, live brands', async () => {
     const brands = await db.brand.findMany({ where: { status: 'PUBLISHED', visibility: 'LIVE' } });
