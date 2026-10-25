@@ -19,6 +19,11 @@ const schema = z.object({
   SMTP_PASSWORD: optional,
   /** Sender address, e.g. "Tastino Foods <info@tastinofoods.com>". */
   SMTP_FROM: optional,
+  /**
+   * 32 random bytes, base64: encrypts the authenticator secrets stored for admin users. Optional so the public site
+   * runs without it; without it the admin sign-in answers "not configured".
+   */
+  ADMIN_ENCRYPTION_KEY: optional,
 });
 
 export type Env = z.infer<typeof schema>;

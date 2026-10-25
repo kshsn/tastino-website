@@ -283,6 +283,8 @@ model User {
   passwordHash       String?
   totpSecret         String?
   totpEnabled        Boolean    @default(false)
+  /// Time step of the last accepted authenticator code: a code is only accepted once (no replay).
+  lastTotpStep       Int?
   recoveryCodeHashes String[]
   failedAttempts     Int        @default(0)
   lockedUntil        DateTime?
@@ -290,8 +292,55 @@ model User {
   leads              Lead[]
   notes              LeadNote[]
   auditLogs          AuditLog[]
+  sessions           Session[]
+  tokens             UserToken[]
   createdAt          DateTime   @default(now())
   updatedAt          DateTime   @updatedAt
+}
+
+enum SessionStage {
+  /// Password was right and a code from the authenticator app is still needed.
+  PENDING_VERIFY
+  /// Password was right and the authenticator app has not been set up yet.
+  PENDING_ENROLL
+  ACTIVE
+}
+
+/// A sign-in. Only a SHA-256 hash of the cookie value is stored, so a database leak cannot be replayed.
+model Session {
+  id         String       @id @default(cuid())
+  tokenHash  String       @unique
+  userId     String
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stage      SessionStage
+  ip         String?
+  userAgent  String?
+  createdAt  DateTime     @default(now())
+  lastSeenAt DateTime     @default(now())
+  /// Absolute end: 12 hours for a full session, a few minutes for a pending one.
+  expiresAt  DateTime
+  revokedAt  DateTime?
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+enum TokenPurpose {
+  INVITE
+}
+
+/// Single-use link sent to a new staff member (48 hours). Only the hash is stored.
+model UserToken {
+  id        String       @id @default(cuid())
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String       @unique
+  purpose   TokenPurpose
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime     @default(now())
+
+  @@index([userId])
 }
 
 /// Append-only: a database trigger rejects UPDATE and DELETE (US-007.7).
