@@ -1,16 +1,31 @@
-import { Logo } from '@/components/layout/Logo';
+import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import { LoginForm } from '@/components/admin/LoginForm';
+import { SignInFrame } from '@/components/admin/SignInFrame';
+import { currentSession } from '@/lib/admin/guard';
+import { safeNext } from '@/lib/admin/paths';
 
-// Placeholder only. Epic 7 builds sign-in with 2FA, lockout and roles (see design/mockup/admin-login.html).
-export default function AdminLoginPage() {
+export const metadata: Metadata = { title: 'Sign in' };
+
+interface Props {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
+
+const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
+
+export default async function AdminLoginPage({ searchParams }: Props) {
+  const query = await searchParams;
+  const next = safeNext(first(query.next));
+  const reason = first(query.reason);
+
+  // Already signed in: straight to where they were going.
+  const session = await currentSession();
+  if (session.ok && session.session.stage === 'ACTIVE') redirect(next);
+
+  const notice = reason === 'timeout' || reason === 'signed-out' ? reason : session.ok ? null : session.reason === 'expired' ? 'timeout' : null;
   return (
-    <main className="grid min-h-screen place-items-center p-6">
-      <div className="w-full max-w-sm text-center">
-        <div className="flex justify-center">
-          <Logo label="Tastino Foods Inc" height={74} className="h-[74px] w-auto" />
-        </div>
-        <h1 className="mt-8 text-2xl font-extrabold">Admin sign in</h1>
-        <p className="mt-3 text-muted">The admin panel is not available yet.</p>
-      </div>
-    </main>
+    <SignInFrame>
+      <LoginForm next={next} notice={notice} />
+    </SignInFrame>
   );
 }
