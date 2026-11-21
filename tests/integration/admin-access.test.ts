@@ -21,15 +21,15 @@ const asRole = async (role: Role) => {
 
 describe('role-based access (US-007.4)', () => {
   it('lets a Super admin open every area', () => {
-    expect((['dashboard', 'users', 'audit', 'content', 'leads', 'settings'] as const).every((a) => can('SUPER_ADMIN', a))).toBe(true);
+    expect((['dashboard', 'users', 'audit', 'content', 'leads', 'settings', 'retention'] as const).every((a) => can('SUPER_ADMIN', a))).toBe(true);
   });
 
   it('lets a Content editor open content and settings only', () => {
-    expect((['dashboard', 'users', 'audit', 'content', 'leads', 'settings'] as const).map((a) => can('CONTENT_EDITOR', a))).toEqual([true, false, false, true, false, true]);
+    expect((['dashboard', 'users', 'audit', 'content', 'leads', 'settings', 'retention'] as const).map((a) => can('CONTENT_EDITOR', a))).toEqual([true, false, false, true, false, true, false]);
   });
 
   it('lets Sales open leads only', () => {
-    expect((['dashboard', 'users', 'audit', 'content', 'leads', 'settings'] as const).map((a) => can('SALES', a))).toEqual([true, false, false, false, true, false]);
+    expect((['dashboard', 'users', 'audit', 'content', 'leads', 'settings', 'retention'] as const).map((a) => can('SALES', a))).toEqual([true, false, false, false, true, false, false]);
   });
 
   it('gives no access at all to a missing or unknown role', () => {
@@ -71,7 +71,7 @@ describe('role-based access (US-007.4)', () => {
       out[role] = (await res.json()).areas;
     }
     expect(out).toEqual({
-      SUPER_ADMIN: ['dashboard', 'users', 'audit', 'content', 'leads', 'settings'],
+      SUPER_ADMIN: ['dashboard', 'users', 'audit', 'content', 'leads', 'settings', 'retention'],
       CONTENT_EDITOR: ['dashboard', 'content', 'settings'],
       SALES: ['dashboard', 'leads'],
     });

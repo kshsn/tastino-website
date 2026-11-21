@@ -73,3 +73,24 @@ export function request(path: string, opts: { method?: string; cookie?: string; 
 export const params = (id: string) => ({ params: Promise.resolve({ id }) });
 
 export const minutes = (from: Date, m: number) => new Date(from.getTime() + m * 60_000);
+
+let leadCounter = 0;
+
+/** A lead straight in the database (the public form is tested elsewhere). */
+export async function makeLead(over: Partial<Parameters<typeof db.lead.create>[0]['data']> & { country?: string } = {}) {
+  const n = ++leadCounter;
+  const base = {
+    reference: `TF-T-${Date.now().toString(36)}-${n}`,
+    reason: 'DISTRIBUTOR' as const,
+    name: `Buyer ${n}`,
+    email: `buyer${n}-${Date.now().toString(36)}@example.test`,
+    company: `Company ${n}`,
+    country: 'Egypt',
+    message: 'We would like to distribute your products.',
+    locale: 'en',
+    consent: true,
+    consentAt: new Date(),
+    consentTextVersion: '2026-10-v1',
+  };
+  return db.lead.create({ data: { ...base, ...over } as Parameters<typeof db.lead.create>[0]['data'] });
+}

@@ -5,7 +5,7 @@ Rebuild and modernization of https://tastinofoods.com (Tastino Foods Inc, 10th o
 ## Status
 - **Current Phase:** 7
 - **Last Completed Phase:** 6 (2026-10-18; /analyze clean)
-- **Last Completed Epic:** E7 Admin Access (2026-10-25, PR open; US-007.8 audit viewer is R2)
+- **Last Completed Epic:** E9 Admin Leads + audit viewer (2026-10-25, PRs open; next: E8 admin content)
 - **Deployment Status:** IN PROGRESS
 
 ---

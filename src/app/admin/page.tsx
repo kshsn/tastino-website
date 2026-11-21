@@ -26,16 +26,16 @@ export default async function AdminHomePage() {
           </div>
         )}
         {can(user.role, 'leads') && (
-          <div className="adm-card">
+          <Link className="adm-card" href="/admin/leads">
             <h2>Leads</h2>
-            <p>See and follow up distributor and contact requests. Coming in the next release.</p>
-          </div>
+            <p>See and follow up distributor, catalogue and product requests: status, assignee, notes, archive and CSV export.</p>
+          </Link>
         )}
         {can(user.role, 'audit') && (
-          <div className="adm-card">
+          <Link className="adm-card" href="/admin/audit">
             <h2>Audit log</h2>
-            <p>Every sign-in and change is already being recorded; the viewer comes later.</p>
-          </div>
+            <p>Who signed in, what changed and who was refused, with before and after values. Entries cannot be edited.</p>
+          </Link>
         )}
       </div>
     </AdminShell>
