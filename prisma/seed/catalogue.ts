@@ -69,8 +69,8 @@ const TOMATO_EN = 'Tomato paste, added salt 2%, natural soluble solids (from tom
 const TOMATO_AR = 'معجون طماطم، ملح مضاف 2%، مواد صلبة ذائبة طبيعية من الطماطم 22–24%. خالٍ من الإضافات ومحسنات النكهة والألوان الصناعية.';
 
 export const PRODUCTS: ProductSeed[] = [
-  // Lora — jams. Individual packshots supplied so far carry the Liora label.
-  { slug: 'lora-strawberry-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Strawberry Jam', nameAr: 'مربى الفراولة الفاخرة', variants: JAM, image: 'liora-strawberry-jam.png', imageNeedsReplacement: true },
+  // Lora — jams.
+  { slug: 'lora-strawberry-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Strawberry Jam', nameAr: 'مربى الفراولة الفاخرة', variants: JAM, image: 'lora-strawberry-jam.png' },
   { slug: 'lora-apricot-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Apricot Jam', nameAr: 'مربى المشمش الفاخرة', variants: JAM, image: 'lora-apricot-jam.png' },
   { slug: 'lora-blueberry-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Blueberry Jam', nameAr: 'مربى التوت الفاخرة', variants: JAM, image: 'lora-blueberry-jam.png' },
   { slug: 'lora-fig-jam', brand: 'lora', category: 'jams', nameEn: 'Premium Fig Jam', nameAr: 'مربى التين الفاخرة', variants: JAM, image: 'lora-fig-jam.png' },
