@@ -19,7 +19,7 @@ const NAV: NavItem[] = [
   { area: 'retention', label: 'Retention', href: '/admin/leads/retention' },
   { area: 'content', label: 'Brands & products', href: '/admin/content', soon: true },
   { area: 'users', label: 'Users', href: '/admin/users' },
-  { area: 'audit', label: 'Audit log', href: '/admin/audit', soon: true },
+  { area: 'audit', label: 'Audit log', href: '/admin/audit' },
   { area: 'settings', label: 'Settings', href: '/admin/settings', soon: true },
 ];
 
